@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useDragControls } from 'framer-motion';
-import { Code, TrendingUp, Zap, Terminal, Search, Layout, Box, Gamepad2 } from 'lucide-react';
+import { Code, TrendingUp, Zap, Terminal, Search, Layout, Box, Gamepad2, Download } from 'lucide-react';
 import SpotlightCard from './SpotlightCard';
 import BlurText from './BlurText';
 
@@ -333,25 +333,60 @@ export default function ServicesOS() {
                     <p className="text-[var(--ink-black)]/60 font-sketch">Digital tools for modern problems.</p>
                 </div>
                 <div className="grid grid-cols-1 gap-8">
-                    {services.filter(s => s.id !== 'terminal').map((service) => (
-                        <SpotlightCard key={service.id} className="relative bg-[var(--card-bg)] sketch-border p-8 h-full border-b-4 border-b-[var(--ink-black)]">
-                            <div className="relative z-10">
-                                <div className="w-16 h-16 mb-6 rounded-full border-2 border-[var(--ink-black)] flex items-center justify-center bg-[var(--bg-paper)] text-[var(--ink-black)]">
-                                    <service.icon size={32} />
+                    {services.map((service) => {
+                        if (service.id === 'terminal') {
+                            return (
+                                <SpotlightCard key={service.id} className="relative bg-[var(--card-bg)] sketch-border p-8 h-full border-b-4 border-b-[var(--ink-black)] overflow-hidden group">
+                                    <div className="absolute inset-0 bg-[var(--ink-black)]/5 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    <div className="relative z-10 flex flex-col h-full justify-between">
+                                        <div>
+                                            <div className="w-16 h-16 mb-6 rounded-full border-2 border-[var(--ink-black)] flex items-center justify-center bg-[var(--bg-paper)] text-[var(--ink-black)]">
+                                                <service.icon size={32} />
+                                            </div>
+                                            <h3 className="text-2xl font-bold text-[var(--ink-black)] mb-2 font-mono tracking-tighter">
+                                                {'>'} Access_Proposal_
+                                            </h3>
+                                            <p className="text-[var(--ink-black)]/70 mb-6 leading-relaxed font-mono text-xs">
+                                                // FULL_SERVICE_BREAKDOWN<br />
+                                                // PRICING_&_PACKAGES_INCLUDED
+                                            </p>
+                                        </div>
+
+                                        <a
+                                            href="/proposal.pdf"
+                                            download="Qroma_Proposal.pdf"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-[var(--ink-black)] text-[var(--bg-paper)] font-bold tracking-widest uppercase text-sm border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300 group-hover:shadow-[4px_4px_0px_var(--ink-black)]"
+                                        >
+                                            <span>DOWNLOAD_PDF</span>
+                                            <Download size={16} />
+                                        </a>
+                                    </div>
+                                </SpotlightCard>
+                            );
+                        }
+
+                        return (
+                            <SpotlightCard key={service.id} className="relative bg-[var(--card-bg)] sketch-border p-8 h-full border-b-4 border-b-[var(--ink-black)]">
+                                <div className="relative z-10">
+                                    <div className="w-16 h-16 mb-6 rounded-full border-2 border-[var(--ink-black)] flex items-center justify-center bg-[var(--bg-paper)] text-[var(--ink-black)]">
+                                        <service.icon size={32} />
+                                    </div>
+                                    <h3 className="text-2xl font-bold text-[var(--ink-black)] mb-4 font-sketch">{service.title}</h3>
+                                    <p className="text-[var(--ink-black)]/70 mb-6 leading-relaxed">{service.description}</p>
+                                    <ul className="space-y-3">
+                                        {service.features.map((feature, idx) => (
+                                            <li key={idx} className="flex items-center text-[var(--ink-black)]/80 text-sm font-medium">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-[var(--ink-black)] mr-3" />
+                                                {feature}
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
-                                <h3 className="text-2xl font-bold text-[var(--ink-black)] mb-4 font-sketch">{service.title}</h3>
-                                <p className="text-[var(--ink-black)]/70 mb-6 leading-relaxed">{service.description}</p>
-                                <ul className="space-y-3">
-                                    {service.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-center text-[var(--ink-black)]/80 text-sm font-medium">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-[var(--ink-black)] mr-3" />
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </SpotlightCard>
-                    ))}
+                            </SpotlightCard>
+                        );
+                    })}
                 </div>
             </div>
 
