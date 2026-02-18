@@ -228,8 +228,8 @@ export default function Contact() {
           <a href="#" className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300">
             Terms of Service
           </a>
-          <a href="#" className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300">
-            Careers
+          <a href="/proposal.pdf" download="Qroma_Proposal.pdf" target="_blank" rel="noopener noreferrer" className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300">
+            Service Proposal
           </a>
         </div>
 

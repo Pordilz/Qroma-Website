@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Send, Check, Mail, Phone, Instagram, ArrowUpRight, ChevronDown, Globe, Megaphone, Zap, Palette, Wrench, Minimize2 } from 'lucide-react';
+import { Send, Check, Mail, Phone, Instagram, ArrowUpRight, ChevronDown, Globe, Megaphone, Zap, Palette, Wrench, Minimize2, Download } from 'lucide-react';
 import BlurText from './BlurText';
 
 export default function InteractiveContact() {
@@ -148,7 +148,7 @@ export default function InteractiveContact() {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.3 }}
                             onClick={() => setIsExpanded(false)}
-                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+                            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[105]"
                         />
                     )}
                 </AnimatePresence>
@@ -160,7 +160,7 @@ export default function InteractiveContact() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                     className={`grid grid-cols-1 lg:grid-cols-2 rounded-3xl border-2 border-[var(--ink-black)] shadow-[8px_8px_0px_0px_var(--shadow-color)] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isExpanded
-                        ? 'fixed inset-4 md:inset-8 lg:inset-12 z-50 max-w-none overflow-auto'
+                        ? 'fixed top-24 bottom-4 left-4 right-4 md:inset-8 lg:inset-12 z-[110] max-w-none overflow-auto no-scrollbar'
                         : 'relative z-10 overflow-hidden'
                         }`}>
                     {/* ---- Left: Info Panel ---- */}
@@ -171,7 +171,7 @@ export default function InteractiveContact() {
                             onClick={() => setIsExpanded(!isExpanded)}
                             whileHover={{ scale: 1.15 }}
                             whileTap={{ scale: 0.9 }}
-                            className="absolute top-5 right-5 w-8 h-8 rounded-full border-2 border-[var(--ink-black)]/20 flex items-center justify-center text-ink/40 hover:bg-[var(--ink-black)] hover:text-[var(--bg-paper)] transition-all duration-300 cursor-pointer z-10"
+                            className="absolute top-5 right-5 w-8 h-8 rounded-full border-2 border-[var(--ink-black)]/20 flex items-center justify-center text-ink/40 bg-[var(--card-bg)] hover:bg-[var(--ink-black)] hover:text-[var(--bg-paper)] transition-all duration-300 cursor-pointer z-10"
                             title={isExpanded ? 'Collapse' : 'Expand'}
                         >
                             <motion.div
@@ -482,10 +482,10 @@ export default function InteractiveContact() {
                         </AnimatePresence>
                     </div>
                 </motion.div>
-            </div>
+            </div >
 
             {/* ===== Footer ===== */}
-            <div className="text-center mt-32 pb-8 border-t-2 border-ink-black/5 pt-8 max-w-7xl mx-auto">
+            < div className="text-center mt-32 pb-8 border-t-2 border-ink-black/5 pt-8 max-w-7xl mx-auto" >
                 <div className="text-3xl font-bold text-ink mb-4 tracking-tighter">QROMA</div>
                 <div className="flex flex-wrap justify-center gap-3 text-sm font-medium">
                     <Link to="/privacy" className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300">
@@ -494,8 +494,15 @@ export default function InteractiveContact() {
                     <Link to="/terms" className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300">
                         Terms of Service
                     </Link>
-                    <a href="#" className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300">
-                        Careers
+                    <a
+                        href="/proposal.pdf"
+                        download="Qroma_Proposal.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300 flex items-center gap-2"
+                    >
+                        <Download size={14} />
+                        Service Proposal
                     </a>
                     <Link to="/faq" className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300">
                         Help Center
@@ -514,7 +521,7 @@ export default function InteractiveContact() {
                 </div>
 
                 <div className="mt-8 text-ink/40 text-xs">© 2026 Qroma. All rights reserved.</div>
-            </div>
-        </section>
+            </div >
+        </section >
     );
 }

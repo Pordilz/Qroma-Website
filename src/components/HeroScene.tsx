@@ -1,6 +1,6 @@
 import { Environment, ContactShadows, Float } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Planet from './Planet';
 
 interface HeroSceneProps {
@@ -8,11 +8,22 @@ interface HeroSceneProps {
 }
 
 export default function HeroScene({ scrollProgress }: HeroSceneProps) {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     // We can use scrollProgress to rotate the planet faster or move it
 
     return (
         <div className="w-full h-full relative">
-            <Canvas camera={{ position: [0, 0, 8], fov: 45 }}>
+            <Canvas camera={{ position: [0, 0, isMobile ? 13 : 8], fov: 45 }}>
                 <Suspense fallback={null}>
                     <Environment preset="studio" />
 

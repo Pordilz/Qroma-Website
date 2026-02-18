@@ -322,17 +322,17 @@ export default function CaseStudies() {
             >
               <div className="mt-16 rounded-2xl border-2 border-[var(--ink-black)] shadow-[8px_8px_0px_0px_var(--shadow-color)] overflow-hidden bg-[var(--card-bg)]">
                 {/* Title Bar */}
-                <div className="flex items-center justify-between px-5 py-3 bg-[var(--card-bg)] border-b-2 border-[var(--ink-black)]/10">
-                  <div className="flex items-center gap-2">
+                <div className="flex flex-col md:flex-row items-center justify-between px-5 py-3 bg-[var(--card-bg)] border-b-2 border-[var(--ink-black)]/10 gap-4 md:gap-0">
+                  <div className="flex items-center gap-2 self-start md:self-auto">
                     <div className="w-3 h-3 rounded-full bg-[#ff5f57] border border-[#e0443e]" />
                     <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
                     <div className="w-3 h-3 rounded-full bg-[#28c840] border border-[#1aab29]" />
                   </div>
                   {/* Tabs */}
-                  <div className="flex items-center gap-1 bg-[var(--bg-paper)] rounded-lg p-1 border border-[var(--ink-black)]/10">
+                  <div className="flex items-center justify-center w-full md:w-auto gap-1 bg-[var(--bg-paper)] rounded-lg p-1 border border-[var(--ink-black)]/10">
                     <button
                       onClick={() => setPanelTab('projects')}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold font-clean tracking-wider uppercase transition-all duration-200 ${panelTab === 'projects'
+                      className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold font-clean tracking-wider uppercase transition-all duration-200 ${panelTab === 'projects'
                         ? 'bg-[var(--ink-black)] text-[var(--bg-paper)] shadow-sm'
                         : 'text-ink/40 hover:text-ink/60'
                         }`}
@@ -342,7 +342,7 @@ export default function CaseStudies() {
                     </button>
                     <button
                       onClick={() => setPanelTab('testimonials')}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold font-clean tracking-wider uppercase transition-all duration-200 ${panelTab === 'testimonials'
+                      className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold font-clean tracking-wider uppercase transition-all duration-200 ${panelTab === 'testimonials'
                         ? 'bg-[var(--ink-black)] text-[var(--bg-paper)] shadow-sm'
                         : 'text-ink/40 hover:text-ink/60'
                         }`}
@@ -351,7 +351,7 @@ export default function CaseStudies() {
                       Testimonials
                     </button>
                   </div>
-                  <div className="w-16" />
+                  <div className="hidden md:block w-16" />
                 </div>
 
                 {/* Tab Content */}

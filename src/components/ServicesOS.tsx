@@ -127,6 +127,21 @@ const Window = ({
                                     <p className="opacity-80">Access granted. Deploying visual_delight.sh...</p>
                                 </div>
 
+                                <div className="mt-4">
+                                    <p>➜  ~  access_database --query="service_packages_&_pricing"</p>
+                                    <p className="opacity-80 py-2">▸ Locating strategic_growth_assets... <span className="font-bold text-green-500">[FOUND]</span></p>
+                                    <p className="opacity-80 pb-2">▸ Preparing secure download...</p>
+                                    <a
+                                        href="/proposal.pdf"
+                                        download="Qroma_Proposal.pdf"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--ink-black)] text-[var(--bg-paper)] hover:bg-transparent hover:text-[var(--ink-black)] border border-[var(--ink-black)] transition-all text-xs font-bold uppercase tracking-wider"
+                                    >
+                                        [ DOWNLOAD_PROPOSAL.pdf ]
+                                    </a>
+                                </div>
+
                                 <p className="mt-4">qroma-system: ~ user$ <span className="animate-pulse">_</span></p>
                             </div>
                         ) : (
