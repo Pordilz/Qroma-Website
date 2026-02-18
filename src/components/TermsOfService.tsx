@@ -55,7 +55,7 @@ export default function TermsOfService() {
                 className="max-w-4xl mx-auto mb-6"
             >
                 <Link
-                    to="/"
+                    to="/#contact"
                     className="inline-flex items-center gap-2 text-sm text-ink/40 hover:text-ink transition-colors font-clean group"
                 >
                     <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />

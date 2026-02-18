@@ -46,8 +46,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
             }
         };
         const handleResize = () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(resizeCanvas, 100);
+            resizeCanvas();
         };
 
         const ro = new ResizeObserver(handleResize);
@@ -56,7 +55,6 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
 
         return () => {
             ro.disconnect();
-            clearTimeout(resizeTimeout);
         };
     }, []);
 
@@ -140,7 +138,21 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         const canvas = canvasRef.current;
         if (!canvas) return;
+
+        // Force update canvas size to ensure it covers the clickable area
+        // This is crucial if the click itself triggered a layout change
+        const parent = canvas.parentElement;
+        if (parent) {
+            const { width, height } = parent.getBoundingClientRect();
+            if (canvas.width !== width || canvas.height !== height) {
+                canvas.width = width;
+                canvas.height = height;
+            }
+        }
+
         const rect = canvas.getBoundingClientRect();
+        // Use page coordinates relative to screen, then adjusted for canvas position
+        // simple clientX/Y - rect.left/top is usually robust for absolute positioning
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 

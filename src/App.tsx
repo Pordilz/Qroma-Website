@@ -27,10 +27,23 @@ function App() {
   const words = ["AUTOMATE", "ACCELERATE", "DOMINATE", "INNOVATE", "CREATE"];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
-  // Close menu on route change
+  // Scroll to top and close menu on route change, but respect hash
   useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location.pathname]);
+    const handleScroll = () => {
+      if (location.hash) {
+        const id = location.hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "auto", block: "start" });
+        }
+      } else {
+        window.scrollTo(0, 0);
+      }
+      setIsMenuOpen(false);
+    };
+
+    handleScroll();
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,6 +109,12 @@ function App() {
           <Magnet padding={60} magnetStrength={3}>
             <Link
               to="/"
+              onClick={(e) => {
+                if (location.pathname === '/') {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
               className="text-2xl font-bold tracking-tighter cursor-pointer hover:bg-[var(--ink-black)] hover:text-[var(--bg-paper)] px-3 py-1 rounded-full transition-all duration-300"
             >
               QROMA
@@ -175,7 +194,7 @@ function App() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
                         className="text-[12vw] leading-none font-bold text-ink tracking-tighter mix-blend-overlay text-center absolute"
                       >
                         {words[currentWordIndex]}

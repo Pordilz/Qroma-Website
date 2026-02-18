@@ -8,13 +8,13 @@ interface HeroSceneProps {
 }
 
 export default function HeroScene({ scrollProgress }: HeroSceneProps) {
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 
     useEffect(() => {
         const checkMobile = () => {
             setIsMobile(window.innerWidth < 768);
         };
-        checkMobile();
+
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
@@ -23,7 +23,7 @@ export default function HeroScene({ scrollProgress }: HeroSceneProps) {
 
     return (
         <div className="w-full h-full relative">
-            <Canvas camera={{ position: [0, 0, isMobile ? 13 : 8], fov: 45 }}>
+            <Canvas camera={{ position: [0, 0, isMobile ? 14 : 8], fov: 45 }}>
                 <Suspense fallback={null}>
                     <Environment preset="studio" />
 
