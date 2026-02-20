@@ -336,40 +336,64 @@ export default function ServicesOS() {
                     {services.map((service) => {
                         if (service.id === 'terminal') {
                             return (
-                                <SpotlightCard key={service.id} className="relative bg-[var(--card-bg)] sketch-border p-8 h-full border-b-4 border-b-[var(--ink-black)] overflow-hidden group">
-                                    <div className="absolute inset-0 bg-[var(--ink-black)]/5 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                    <div className="relative z-10 flex flex-col h-full justify-between">
-                                        <div>
-                                            <div className="w-16 h-16 mb-6 rounded-full border-2 border-[var(--ink-black)] flex items-center justify-center bg-[var(--bg-paper)] text-[var(--ink-black)]">
-                                                <service.icon size={32} />
-                                            </div>
-                                            <h3 className="text-2xl font-bold text-[var(--ink-black)] mb-2 font-mono tracking-tighter">
-                                                {'>'} Access_Proposal_
-                                            </h3>
-                                            <p className="text-[var(--ink-black)]/70 mb-6 leading-relaxed font-mono text-xs">
-                                                // FULL_SERVICE_BREAKDOWN<br />
-                                                // PRICING_&_PACKAGES_INCLUDED
-                                            </p>
+                                <SpotlightCard key={service.id} className="relative rounded-2xl border-2 border-[var(--ink-black)] shadow-[8px_8px_0px_0px_var(--shadow-color)] overflow-hidden bg-[var(--card-bg)] group">
+                                    {/* Mac Title Bar */}
+                                    <div className="flex items-center justify-between px-5 py-3 bg-[var(--card-bg)] border-b-2 border-[var(--ink-black)]/10">
+                                        <div className="flex items-center gap-2">
+                                            <div className="w-3 h-3 rounded-full bg-[#ff5f57] border border-[#e0443e]" />
+                                            <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
+                                            <div className="w-3 h-3 rounded-full bg-[#28c840] border border-[#1aab29]" />
                                         </div>
+                                        <span className="text-xs font-bold tracking-wider uppercase text-[var(--ink-black)]/50 font-clean">{service.title}</span>
+                                        <div className="w-16" />
+                                    </div>
+                                    <div className="absolute inset-0 bg-[var(--ink-black)]/5 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    <div className="relative z-10 p-8">
+                                        <div className="w-16 h-16 mb-6 rounded-full border-2 border-[var(--ink-black)] flex items-center justify-center bg-[var(--bg-paper)] text-[var(--ink-black)]">
+                                            <service.icon size={32} />
+                                        </div>
+                                        <h3 className="text-2xl font-bold text-[var(--ink-black)] mb-2 font-mono tracking-tighter">
+                                            {'>'} Access_Proposal_
+                                        </h3>
+                                        <p className="text-[var(--ink-black)]/70 mb-4 leading-relaxed font-mono text-sm">
+                                            // FULL_SERVICE_BREAKDOWN<br />
+                                            // PRICING_&_PACKAGES_INCLUDED
+                                        </p>
 
-                                        <a
-                                            href="/proposal.pdf"
-                                            download="Qroma_Proposal.pdf"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-[var(--ink-black)] text-[var(--bg-paper)] font-bold tracking-widest uppercase text-sm border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300 group-hover:shadow-[4px_4px_0px_var(--ink-black)]"
-                                        >
-                                            <span>DOWNLOAD_PDF</span>
-                                            <Download size={16} />
-                                        </a>
+                                        <div className="mt-8 border-t-2 border-dashed border-[var(--ink-black)]/20 pt-6">
+                                            <div className="flex items-center gap-2 mb-4">
+                                                <Terminal size={14} className="opacity-50" />
+                                                <p className="text-xs font-mono text-[var(--ink-black)]/60">execute ./download_pdf.sh</p>
+                                            </div>
+                                            <a
+                                                href="/proposal.pdf"
+                                                download="Qroma_Proposal.pdf"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="group/btn w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-[var(--ink-black)] text-[var(--bg-paper)] font-mono font-bold tracking-widest uppercase text-sm border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300 hover:shadow-[4px_4px_0px_var(--ink-black)]"
+                                            >
+                                                <span>[ INIT_DOWNLOAD ]</span>
+                                                <Download size={18} className="group-hover/btn:translate-y-1 transition-transform" />
+                                            </a>
+                                        </div>
                                     </div>
                                 </SpotlightCard>
                             );
                         }
 
                         return (
-                            <SpotlightCard key={service.id} className="relative bg-[var(--card-bg)] sketch-border p-8 h-full border-b-4 border-b-[var(--ink-black)]">
-                                <div className="relative z-10">
+                            <SpotlightCard key={service.id} className="relative rounded-2xl border-2 border-[var(--ink-black)] shadow-[8px_8px_0px_0px_var(--shadow-color)] overflow-hidden bg-[var(--card-bg)]">
+                                {/* Mac Title Bar */}
+                                <div className="flex items-center justify-between px-5 py-3 bg-[var(--card-bg)] border-b-2 border-[var(--ink-black)]/10">
+                                    <div className="flex items-center gap-2">
+                                        <div className="w-3 h-3 rounded-full bg-[#ff5f57] border border-[#e0443e]" />
+                                        <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
+                                        <div className="w-3 h-3 rounded-full bg-[#28c840] border border-[#1aab29]" />
+                                    </div>
+                                    <span className="text-xs font-bold tracking-wider uppercase text-[var(--ink-black)]/50 font-clean">{service.title}</span>
+                                    <div className="w-16" />
+                                </div>
+                                <div className="relative z-10 p-8">
                                     <div className="w-16 h-16 mb-6 rounded-full border-2 border-[var(--ink-black)] flex items-center justify-center bg-[var(--bg-paper)] text-[var(--ink-black)]">
                                         <service.icon size={32} />
                                     </div>
