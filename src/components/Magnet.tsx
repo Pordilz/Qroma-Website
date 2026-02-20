@@ -29,6 +29,10 @@ const Magnet: React.FC<MagnetProps> = ({
             return;
         }
 
+        // Skip on touch-only devices where hover doesn't apply
+        const isTouchOnly = window.matchMedia('(hover: none)').matches;
+        if (isTouchOnly) return;
+
         const handleMouseMove = (e: MouseEvent) => {
             if (!magnetRef.current) return;
             const { left, top, width, height } = magnetRef.current.getBoundingClientRect();

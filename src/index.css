@@ -78,7 +78,7 @@ body::before {
   height: 100%;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   pointer-events: none;
-  z-index: 9999;
+  z-index: 50;
   transition: opacity 0.4s ease;
   opacity: 0.4;
 }
@@ -422,7 +422,7 @@ body::before {
   /* Firefox */
 }
 
-/* Remove Autofill Highlight */
+/* Remove Autofill Highlight — respects theme */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -431,8 +431,23 @@ textarea:-webkit-autofill,
 textarea:-webkit-autofill:hover,
 textarea:-webkit-autofill:focus,
 textarea:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #121212 inset !important;
-  -webkit-text-fill-color: white !important;
-  caret-color: white !important;
+  -webkit-box-shadow: 0 0 0 30px var(--card-bg) inset !important;
+  -webkit-text-fill-color: var(--ink-black) !important;
+  caret-color: var(--ink-black) !important;
   transition: background-color 5000s ease-in-out 0s;
+}
+
+/* ============================
+   Accessibility: Reduced Motion
+   ============================ */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
