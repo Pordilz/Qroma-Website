@@ -1,14 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Send, Check, Mail, Phone, Instagram, ArrowUpRight, ChevronDown, Globe, Megaphone, Zap, Palette, Wrench, Minimize2, Download } from 'lucide-react';
+import { Send, Check, Mail, Instagram, ArrowUpRight, ChevronDown, Globe, Megaphone, Zap, Palette, Wrench, Minimize2, Download } from 'lucide-react';
 import BlurText from './BlurText';
 
 export default function InteractiveContact() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
-        phone: '',
         subject: '',
         message: '',
     });
@@ -82,7 +81,6 @@ export default function InteractiveContact() {
                     from_name: formData.name,
                     name: formData.name,
                     email: formData.email,
-                    phone: formData.phone,
                     service: formData.subject,
                     message: formData.message,
                 }),
@@ -283,7 +281,7 @@ export default function InteractiveContact() {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
                                             <div className="py-5 border-b border-white/10 group">
                                                 <label className="block text-[10px] font-bold text-white/70 uppercase tracking-[0.15em] mb-2">
-                                                    Name
+                                                    Name <span className="text-red-400">*</span>
                                                 </label>
                                                 <input
                                                     type="text"
@@ -297,7 +295,7 @@ export default function InteractiveContact() {
                                             </div>
                                             <div className="py-5 border-b border-white/10 group">
                                                 <label className="block text-[10px] font-bold text-white/70 uppercase tracking-[0.15em] mb-2">
-                                                    Email
+                                                    Email <span className="text-red-400">*</span>
                                                 </label>
                                                 <input
                                                     type="email"
@@ -311,21 +309,8 @@ export default function InteractiveContact() {
                                             </div>
                                         </div>
 
-                                        {/* Row 2: Phone & Subject */}
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8">
-                                            <div className="py-5 border-b border-white/10">
-                                                <label className="block text-[10px] font-bold text-white/70 uppercase tracking-[0.15em] mb-2">
-                                                    Phone
-                                                </label>
-                                                <input
-                                                    type="tel"
-                                                    name="phone"
-                                                    value={formData.phone}
-                                                    onChange={handleInputChange}
-                                                    placeholder="+27 (0) 12 345 6789"
-                                                    className="w-full bg-transparent text-white placeholder-white/30 outline-none text-base font-medium caret-white"
-                                                />
-                                            </div>
+                                        {/* Row 2: Subject */}
+                                        <div className="grid grid-cols-1 gap-x-8">
                                             <div className="py-5 border-b border-white/10 relative" ref={dropdownRef}>
                                                 <label className="block text-[10px] font-bold text-white/70 uppercase tracking-[0.15em] mb-2">
                                                     Subject
@@ -404,7 +389,7 @@ export default function InteractiveContact() {
                                         {/* Row 3: Message */}
                                         <div className="py-5 border-b border-white/10">
                                             <label className="block text-[10px] font-bold text-white/70 uppercase tracking-[0.15em] mb-2">
-                                                Message
+                                                Message <span className="text-red-400">*</span>
                                             </label>
                                             <textarea
                                                 ref={textareaRef}
@@ -412,6 +397,7 @@ export default function InteractiveContact() {
                                                 value={formData.message}
                                                 onChange={handleInputChange}
                                                 placeholder="Tell us about your project..."
+                                                required
                                                 rows={3}
                                                 className="w-full bg-transparent text-white placeholder-white/30 outline-none text-base font-medium resize-none caret-white"
                                             />
@@ -469,7 +455,7 @@ export default function InteractiveContact() {
                                     <motion.button
                                         onClick={() => {
                                             setIsSuccess(false);
-                                            setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+                                            setFormData({ name: '', email: '', subject: '', message: '' });
                                         }}
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
