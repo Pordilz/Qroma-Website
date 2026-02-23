@@ -251,12 +251,14 @@ export default function ServicesOS() {
     useEffect(() => {
         const calculatePositions = () => {
             const width = window.innerWidth;
+            const height = window.innerHeight; // Factoring in vertical space
             const windowWidth = 520;
+            const windowHeight = 450;
             const gap = 40;
             const topMargin = 50;
 
-            if (width >= 1600) {
-                // 3-Column Layout (Side by Side)
+            // Large Displays (3-Column Layout side-by-side)
+            if (width >= 1600 && height >= 600) {
                 const totalContentWidth = (windowWidth * 3) + (gap * 2);
                 const startX = Math.max(0, (width - totalContentWidth) / 2);
                 setPositions({
@@ -265,24 +267,31 @@ export default function ServicesOS() {
                     automation: { x: startX + (windowWidth * 2) + (gap * 2), y: topMargin },
                     terminal: { x: startX + 200, y: topMargin + 200 }
                 });
-            } else if (width >= 1100) {
-                // 2-Column Layout (2 Top, 1 Bottom)
+            }
+            // Medium/Large Displays with enough height (2 Top, 1 Bottom)
+            else if (width >= 1200 && height >= 1000) {
                 const totalContentWidth = (windowWidth * 2) + gap;
                 const startX = Math.max(0, (width - totalContentWidth) / 2);
                 setPositions({
                     web: { x: startX, y: topMargin },
                     marketing: { x: startX + windowWidth + gap, y: topMargin },
-                    automation: { x: (width - windowWidth) / 2, y: topMargin + 450 + gap },
+                    automation: { x: (width - windowWidth) / 2, y: topMargin + windowHeight + gap },
                     terminal: { x: startX + 100, y: topMargin + 300 }
                 });
-            } else {
-                // 1-Column Layout (Stacked Vertically)
-                const startX = Math.max(0, (width - windowWidth) / 2);
+            }
+            // Medium Screens like Macbook 13" (Cascaded Stack)
+            else {
+                // Stack over each other so they fit efficiently within any screen
+                const offset = 40; // Shift downward and rightward
+                const totalStackWidth = windowWidth + (offset * 2);
+                const startX = Math.max(20, (width - totalStackWidth) / 2);
+                const startY = Math.max(20, topMargin);
+
                 setPositions({
-                    web: { x: startX, y: topMargin },
-                    marketing: { x: startX, y: topMargin + 450 + gap },
-                    automation: { x: startX, y: topMargin + (450 * 2) + (gap * 2) },
-                    terminal: { x: startX + 50, y: topMargin + 100 }
+                    web: { x: startX, y: startY },
+                    marketing: { x: startX + offset, y: startY + offset },
+                    automation: { x: startX + (offset * 2), y: startY + (offset * 2) },
+                    terminal: { x: startX + (offset * 3), y: startY + (offset * 3) }
                 });
             }
         };
