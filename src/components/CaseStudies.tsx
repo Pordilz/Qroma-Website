@@ -1,23 +1,12 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { ExternalLink, ShoppingBag, Heart, ChevronDown, Star, MessageSquareQuote, FolderOpen } from 'lucide-react';
+import { ExternalLink, Heart, ChevronDown, Star, MessageSquareQuote, FolderOpen } from 'lucide-react';
 import Folder from './Folder';
 import BlurText from './BlurText';
 
 const projects = [
   {
     id: 1,
-    title: 'SummitSea',
-    category: 'E-Commerce',
-    description: 'New Zealand\'s premier online marketplace featuring curated lifestyle, tech, and pet products with a modern Shopify-plus aesthetic.',
-    url: 'https://summitsea.shop/',
-    icon: ShoppingBag,
-    color: '#60A5FA', // Blue ocean theme
-    tech: ['Shopify', 'React', 'Tailwind CSS'],
-    logo: '/summitsea-hero.png',
-  },
-  {
-    id: 2,
     title: 'The FixSir',
     category: 'Healthcare',
     description: 'Professional recovery therapy platform specializing in sports massage and Hijama cupping therapy for athletes in Durban.',
@@ -25,7 +14,7 @@ const projects = [
     icon: Heart,
     color: '#DC2626', // Medical red
     tech: ['Next.js', 'WhatsApp API', 'Framer Motion'],
-    logo: '/fixsir-hero.png',
+    logo: '/fixsir-hero.webp',
   },
 ];
 
@@ -38,15 +27,6 @@ const testimonials = [
     rating: 5,
     project: 'The FixSir',
     color: '#DC2626',
-  },
-  {
-    id: 2,
-    name: 'Barry Ally',
-    role: 'Owner, SummitSea',
-    quote: 'From concept to launch, Qroma delivered a stunning e-commerce store that our customers love. The attention to detail and the speed of delivery blew us away. Sales have been growing every month since launch.',
-    rating: 5,
-    project: 'SummitSea',
-    color: '#60A5FA',
   },
 ];
 
@@ -89,13 +69,14 @@ export default function CaseStudies() {
                   className="w-full h-full bg-white border-2 border-[var(--ink-black)] overflow-hidden relative cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setSelectedImage('/fixsir-testimonials.png');
+                    setSelectedImage('/fixsir-testimonials.webp');
                   }}
                 >
                   <img
-                    src="/fixsir-testimonials.png"
+                    src="/fixsir-testimonials.webp"
                     alt="Client Testimonials"
                     className="w-full h-full object-cover object-top"
+                    loading="lazy"
                   />
                   {/* Fallback text if image missing (during dev) */}
                   <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white opacity-0 hover:opacity-100 transition-opacity">
@@ -108,13 +89,14 @@ export default function CaseStudies() {
                   className="w-full h-full bg-white border-2 border-[var(--ink-black)] overflow-hidden relative cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setSelectedImage('/fixsir-services.png');
+                    setSelectedImage('/fixsir-services.webp');
                   }}
                 >
                   <img
-                    src="/fixsir-services.png"
+                    src="/fixsir-services.webp"
                     alt="Services List"
                     className="w-full h-full object-cover object-top"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white opacity-0 hover:opacity-100 transition-opacity">
                     <span className="text-[10px] font-bold uppercase tracking-wider">Services List</span>
@@ -126,73 +108,17 @@ export default function CaseStudies() {
                   className="w-full h-full bg-[#DC2626] border-2 border-[var(--ink-black)] overflow-hidden relative cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setSelectedImage('/fixsir-hero.png');
+                    setSelectedImage('/fixsir-hero.webp');
                   }}
                 >
                   <img
-                    src="/fixsir-hero.png"
+                    src="/fixsir-hero.webp"
                     alt="The FixSir Welcome"
                     className="w-full h-full object-contain p-2"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white opacity-0 hover:opacity-100 transition-opacity">
                     <span className="text-[10px] font-bold uppercase tracking-wider">The FixSir</span>
-                  </div>
-                </div>,
-              ];
-            } else if (project.title === 'SummitSea') {
-              folderItems = [
-                // Paper 1 (Left) - Storefront
-                <div
-                  key="storefront"
-                  className="w-full h-full bg-white border-2 border-[var(--ink-black)] overflow-hidden relative cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedImage('/summitsea-storefront.png');
-                  }}
-                >
-                  <img
-                    src="/summitsea-storefront.png"
-                    alt="Storefront"
-                    className="w-full h-full object-cover object-top"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white opacity-0 hover:opacity-100 transition-opacity">
-                    <span className="text-[10px] font-bold uppercase tracking-wider">Storefront</span>
-                  </div>
-                </div>,
-                // Paper 2 (Right) - Collections
-                <div
-                  key="collections"
-                  className="w-full h-full bg-white border-2 border-[var(--ink-black)] overflow-hidden relative cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedImage('/summitsea-collections.png');
-                  }}
-                >
-                  <img
-                    src="/summitsea-collections.png"
-                    alt="Product Collections"
-                    className="w-full h-full object-cover object-top"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white opacity-0 hover:opacity-100 transition-opacity">
-                    <span className="text-[10px] font-bold uppercase tracking-wider">Best Sellers</span>
-                  </div>
-                </div>,
-                // Paper 3 (Center/Top) - Hero
-                <div
-                  key="hero"
-                  className="w-full h-full bg-[#60A5FA] border-2 border-[var(--ink-black)] overflow-hidden relative cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedImage('/summitsea-hero.png');
-                  }}
-                >
-                  <img
-                    src="/summitsea-hero.png"
-                    alt="SummitSea"
-                    className="w-full h-full object-contain p-2"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white opacity-0 hover:opacity-100 transition-opacity">
-                    <span className="text-[10px] font-bold uppercase tracking-wider">SummitSea</span>
                   </div>
                 </div>,
               ];

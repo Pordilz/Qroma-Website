@@ -13,14 +13,23 @@ function useElementWidth(ref: React.RefObject<HTMLElement | null>) {
     const [width, setWidth] = useState(0);
 
     useLayoutEffect(() => {
-        function updateWidth() {
-            if (ref.current) {
-                setWidth(ref.current.offsetWidth);
+        if (!ref.current) return;
+
+        const resizeObserver = new ResizeObserver((entries) => {
+            for (let entry of entries) {
+                // borderBoxSize gives us the width without triggering a synchronous layout/reflow
+                if (entry.borderBoxSize && entry.borderBoxSize.length > 0) {
+                    setWidth(entry.borderBoxSize[0].inlineSize);
+                } else {
+                    // Fallback to contentRect if borderBoxSize is unavailable
+                    setWidth(entry.contentRect.width);
+                }
             }
-        }
-        updateWidth();
-        window.addEventListener('resize', updateWidth);
-        return () => window.removeEventListener('resize', updateWidth);
+        });
+
+        resizeObserver.observe(ref.current);
+
+        return () => resizeObserver.disconnect();
     }, [ref]);
 
     return width;

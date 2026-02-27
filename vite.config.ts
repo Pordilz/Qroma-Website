@@ -7,4 +7,16 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
+  build: {
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-three': ['three', '@react-three/fiber', '@react-three/drei'],
+          'vendor-framer': ['framer-motion'],
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+        },
+      },
+    },
+  },
 });

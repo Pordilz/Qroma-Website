@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
-import HeroScene from './components/HeroScene';
+import React, { Suspense } from 'react';
+
+const HeroScene = React.lazy(() => import('./components/HeroScene'));
 
 import Services from './components/ServicesOS';
 import Process from './components/Process';
@@ -125,6 +127,7 @@ function App() {
             <Magnet padding={60} magnetStrength={3}>
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 className="p-2.5 z-50 bg-[var(--ink-black)] text-[var(--bg-paper)] border-2 border-[var(--ink-black)] rounded-full hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -183,22 +186,26 @@ function App() {
               {/* Hero Section with 3D Planet */}
               <div className="relative h-screen w-full">
                 <div className="absolute inset-0 z-0">
-                  <HeroScene scrollProgress={scrollProgress} />
+                  <Suspense fallback={null}>
+                    <HeroScene scrollProgress={scrollProgress} />
+                  </Suspense>
                 </div>
 
                 <div className="absolute inset-0 z-10 flex flex-col items-center justify-center pointer-events-none">
                   <div className="h-[12vw] flex items-center justify-center overflow-hidden">
                     <AnimatePresence mode="wait">
-                      <motion.h1
+                      <motion.span
                         key={words[currentWordIndex]}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3, ease: "easeOut" }}
                         className="text-[12vw] leading-none font-bold text-ink tracking-tighter mix-blend-overlay text-center absolute"
+                        role="heading"
+                        aria-level={2}
                       >
                         {words[currentWordIndex]}
-                      </motion.h1>
+                      </motion.span>
                     </AnimatePresence>
                   </div>
                 </div>

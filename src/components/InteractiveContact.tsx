@@ -500,6 +500,7 @@ export default function InteractiveContact() {
                         href="https://www.instagram.com/qromadigital/?utm_source=ig_web_button_share_sheet"
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label="Visit our Instagram page"
                         className="w-10 h-10 rounded-full border-2 border-[var(--ink-black)] flex items-center justify-center bg-[var(--ink-black)] text-[var(--bg-paper)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300"
                     >
                         <Instagram className="w-5 h-5" />
