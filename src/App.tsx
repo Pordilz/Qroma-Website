@@ -18,6 +18,7 @@ import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import FAQ from './components/FAQ';
 import About from './components/About';
+import SEO from './components/SEO';
 import { Menu, X } from 'lucide-react';
 
 function App() {
@@ -226,6 +227,12 @@ function App() {
                 </AnimatePresence>
               </div>
 
+              <SEO
+                title="Qroma Digital | Expert Web Design & Automation in Durban"
+                description="Looking for expert Web Design in Durban? Qroma offers premium web development, digital marketing, and business automation in Kwa-Zulu Natal. Packages from R3500."
+                canonical="https://www.qroma.digital/"
+              />
+
               <div className="relative z-10 bg-paper">
                 <Services />
                 <Process />
@@ -243,11 +250,56 @@ function App() {
             </>
           } />
 
-          <Route path="/vault" element={<Vault />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsOfService />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/vault" element={
+            <>
+              <SEO
+                title="The Vault | Qroma Digital Blog"
+                description="Insights on Web Design, Automation, and Digital Marketing from Qroma Digital in Durban."
+                canonical="https://www.qroma.digital/vault"
+              />
+              <Vault />
+            </>
+          } />
+          <Route path="/privacy" element={
+            <>
+              <SEO
+                title="Privacy Policy | Qroma Digital"
+                description="Read our Privacy Policy to learn how Qroma Digital protects your personal information."
+                canonical="https://www.qroma.digital/privacy"
+              />
+              <PrivacyPolicy />
+            </>
+          } />
+          <Route path="/terms" element={
+            <>
+              <SEO
+                title="Terms of Service | Qroma Digital"
+                description="Terms of Service and conditions for working with Qroma Digital."
+                canonical="https://www.qroma.digital/terms"
+              />
+              <TermsOfService />
+            </>
+          } />
+          <Route path="/faq" element={
+            <>
+              <SEO
+                title="FAQ | Qroma Digital Web Design & Automation"
+                description="Frequently Asked Questions about our web design, development, and business automation services."
+                canonical="https://www.qroma.digital/faq"
+              />
+              <FAQ />
+            </>
+          } />
+          <Route path="/about" element={
+            <>
+              <SEO
+                title="About Us | Qroma Digital"
+                description="Learn more about Qroma Digital. We build digital assets that help local and national businesses scale efficiently."
+                canonical="https://www.qroma.digital/about"
+              />
+              <About />
+            </>
+          } />
         </Routes>
       </div>
     </ClickSpark>
