@@ -12,10 +12,7 @@ const faqs = [
         q: 'Does Qroma Digital offer business automation in Durban?',
         a: 'Yes. Qroma Digital is one of the only agencies in KZN offering full business automation including CRM setup, WhatsApp automation, Zapier integrations and workflow design for SMEs.'
     },
-    {
-        q: 'Are you available after hours?',
-        a: 'Yes. Qroma Digital operates 24/7. You can call or WhatsApp us at any time: +27 84 786 2260.'
-    },
+
     {
         q: 'What areas in KZN do you serve?',
         a: 'We\'re headquartered in Durban and serve all of KZN including Umhlanga, Hillcrest, Westville, Pinetown, Ballito, Pietermaritzburg, and nationally across South Africa.'
@@ -26,7 +23,7 @@ const faqs = [
     },
     {
         q: 'How long does a website take to build?',
-        a: 'A standard business website takes 5–14 days. eCommerce stores typically take 14–30 days. Rush turnaround is available — contact us 24/7.'
+        a: 'A standard business website takes 5–14 days. eCommerce stores typically take 14–30 days. Rush turnaround is available — contact us.'
     },
     {
         q: 'What is WhatsApp business automation?',

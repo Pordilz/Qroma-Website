@@ -16,12 +16,13 @@ import ScrollVelocity from './components/ScrollVelocity';
 import FAQSection from './components/FAQSection';
 import ThemeToggle from './components/ThemeToggle';
 import Vault from './components/Vault';
+import BlogPost from './pages/BlogPost';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import FAQ from './components/FAQ';
 import About from './components/About';
 import SEO from './components/SEO';
-import FloatingWhatsApp from './components/FloatingWhatsApp';
+
 import NotFound from './pages/NotFound';
 import { Menu, X } from 'lucide-react';
 
@@ -105,7 +106,7 @@ function App() {
     { label: 'Work', section: 'work' },
     // { label: 'Pricing', section: 'pricing' },
     { label: 'About', section: null, route: '/about' },
-    { label: 'Blog', section: null, route: '/vault' },
+    { label: 'Blog', section: null, route: '/blog' },
     { label: 'FAQ', section: 'faq' },
     { label: 'Contact', section: 'contact' },
   ];
@@ -260,16 +261,17 @@ function App() {
             </>
           } />
 
-          <Route path="/vault" element={
+          <Route path="/blog" element={
             <>
               <SEO
                 title="The Vault | Qroma Digital Blog"
                 description="Insights on Web Design, Automation, and Digital Marketing from Qroma Digital in Durban."
-                canonical="https://www.qroma.digital/vault"
+                canonical="https://www.qroma.digital/blog"
               />
               <Vault />
             </>
           } />
+          <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/privacy" element={
             <>
               <SEO
@@ -312,7 +314,7 @@ function App() {
           } />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <FloatingWhatsApp />
+
       </div>
     </ClickSpark>
   );

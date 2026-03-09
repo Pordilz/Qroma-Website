@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Send, Check, Mail, Instagram, ArrowUpRight, ChevronDown, Globe, Megaphone, Zap, Palette, Wrench, Minimize2, Download, Phone, MessageCircle } from 'lucide-react';
+import { Send, Check, Mail, Instagram, ArrowUpRight, ChevronDown, Globe, Megaphone, Zap, Palette, Wrench, Minimize2, Download } from 'lucide-react';
 import BlurText from './BlurText';
 
 export default function InteractiveContact() {
@@ -101,19 +101,6 @@ export default function InteractiveContact() {
     };
 
     const contactDetails = [
-        {
-            label: 'Phone (24/7)',
-            value: '+27 84 786 2260',
-            href: 'tel:+27847862260',
-            icon: Phone,
-        },
-        {
-            label: 'WhatsApp',
-            value: 'Chat with us',
-            href: 'https://wa.me/27847862260?text=Hi+Qroma+I+have+an+enquiry',
-            icon: MessageCircle,
-            external: true,
-        },
         {
             label: 'Email',
             value: 'Qromatech@gmail.com',
@@ -490,9 +477,6 @@ export default function InteractiveContact() {
                     <div className="flex flex-col justify-center w-full">
                         <div className="text-4xl font-bold text-[var(--ink-black)] mb-6 tracking-tighter">QROMA DIGITAL</div>
 
-                        <div className="text-[var(--ink-black)]/70 mb-8 font-clean leading-relaxed">
-                            <a href="tel:+27847862260" className="font-bold hover:underline text-lg">+27 84 786 2260</a> <span className="mx-2 opacity-50">|</span> 24/7 Available<br />
-                        </div>
 
                         <div className="flex flex-wrap justify-center gap-3 text-sm font-medium">
                             <Link to="/privacy" className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300">
