@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Check } from 'lucide-react';
 
 const pricingTiers = [
     {
@@ -56,8 +55,8 @@ export default function Pricing() {
                             viewport={{ once: true, margin: '-50px' }}
                             transition={{ delay: index * 0.1, duration: 0.5 }}
                             className={`flex flex-col p-8 rounded-3xl border-2 transition-transform duration-300 hover:-translate-y-2 ${tier.highlight
-                                    ? 'bg-[var(--ink-black)] text-[var(--bg-paper)] border-[var(--ink-black)] shadow-[8px_8px_0px_0px_var(--shadow-color)]'
-                                    : 'bg-[var(--bg-paper)] text-[var(--ink-black)] border-[var(--ink-black)]/20 hover:border-[var(--ink-black)]'
+                                ? 'bg-[var(--ink-black)] text-[var(--bg-paper)] border-[var(--ink-black)] shadow-[8px_8px_0px_0px_var(--shadow-color)]'
+                                : 'bg-[var(--bg-paper)] text-[var(--ink-black)] border-[var(--ink-black)]/20 hover:border-[var(--ink-black)]'
                                 }`}
                         >
                             <div className="mb-8">
@@ -83,17 +82,6 @@ export default function Pricing() {
                                     </div>
                                 ))}
                             </div>
-
-                            <Link
-                                to="/contact"
-                                className={`group flex items-center justify-center gap-2 w-full py-4 rounded-xl font-bold tracking-wide transition-all ${tier.highlight
-                                        ? 'bg-[var(--bg-paper)] text-[var(--ink-black)] hover:bg-white'
-                                        : 'bg-[var(--ink-black)] text-[var(--bg-paper)] hover:bg-[var(--ink-black)]/90'
-                                    }`}
-                            >
-                                Get Started
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </Link>
                         </motion.div>
                     ))}
                 </div>
