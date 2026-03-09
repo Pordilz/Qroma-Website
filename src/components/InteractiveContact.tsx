@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Send, Check, Mail, Instagram, ArrowUpRight, ChevronDown, Globe, Megaphone, Zap, Palette, Wrench, Minimize2, Download, Phone, MessageCircle, MapPin } from 'lucide-react';
+import { Send, Check, Mail, Instagram, ArrowUpRight, ChevronDown, Globe, Megaphone, Zap, Palette, Wrench, Minimize2, Download, Phone, MessageCircle } from 'lucide-react';
 import BlurText from './BlurText';
 
 export default function InteractiveContact() {
@@ -112,13 +112,6 @@ export default function InteractiveContact() {
             value: 'Chat with us',
             href: 'https://wa.me/27847862260?text=Hi+Qroma+I+have+an+enquiry',
             icon: MessageCircle,
-            external: true,
-        },
-        {
-            label: 'Address',
-            value: '2 Kilmarnock Place, Morningside, Durban',
-            href: 'https://maps.google.com/?q=2+Kilmarnock+Place+Morningside+Durban+4001',
-            icon: MapPin,
             external: true,
         },
         {
@@ -492,34 +485,16 @@ export default function InteractiveContact() {
 
             {/* ===== Footer ===== */}
             <div className="mt-20 border-t-2 border-ink-black/5 pt-16 max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
-                    {/* Map Column */}
-                    <div className="w-full h-[300px] rounded-2xl overflow-hidden border-2 border-[var(--ink-black)]/10">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3460.672685934149!2d31.017645076326176!3d-29.81603597503884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ef7a9cb525d8869%3A0xe51fb437f8fe31ef!2s2%20Kilmarnock%20Pl%2C%20Morningside%2C%20Berea%2C%204001!5e0!3m2!1sen!2sza!4v1714574921932!5m2!1sen!2sza"
-                            width="100%"
-                            height="100%"
-                            style={{ border: 0 }}
-                            allowFullScreen
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
-                            title="Qroma Digital Location Map"
-                        ></iframe>
-                    </div>
-
+                <div className="flex flex-col items-center mb-16 max-w-2xl mx-auto text-center">
                     {/* Footer Info */}
-                    <div className="flex flex-col justify-center text-center md:text-left">
+                    <div className="flex flex-col justify-center w-full">
                         <div className="text-4xl font-bold text-[var(--ink-black)] mb-6 tracking-tighter">QROMA DIGITAL</div>
 
-                        <address className="not-italic text-[var(--ink-black)]/70 mb-8 font-clean leading-relaxed">
-                            <strong>Durban Headquarters</strong><br />
-                            2 Kilmarnock Place, Morningside<br />
-                            Durban, KwaZulu-Natal, 4001<br />
-                            South Africa<br /><br />
-                            <a href="tel:+27847862260" className="font-bold hover:underline">+27 84 786 2260</a> | 24/7 Available<br />
-                        </address>
+                        <div className="text-[var(--ink-black)]/70 mb-8 font-clean leading-relaxed">
+                            <a href="tel:+27847862260" className="font-bold hover:underline text-lg">+27 84 786 2260</a> <span className="mx-2 opacity-50">|</span> 24/7 Available<br />
+                        </div>
 
-                        <div className="flex flex-wrap justify-center md:justify-start gap-3 text-sm font-medium">
+                        <div className="flex flex-wrap justify-center gap-3 text-sm font-medium">
                             <Link to="/privacy" className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300">
                                 Privacy Policy
                             </Link>
