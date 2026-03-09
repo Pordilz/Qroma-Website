@@ -12,6 +12,8 @@ import InteractiveContact from './components/InteractiveContact';
 import ClickSpark from './components/ClickSpark';
 import Magnet from './components/Magnet';
 import ScrollVelocity from './components/ScrollVelocity';
+import Pricing from './components/Pricing';
+import FAQSection from './components/FAQSection';
 import ThemeToggle from './components/ThemeToggle';
 import Vault from './components/Vault';
 import PrivacyPolicy from './components/PrivacyPolicy';
@@ -19,6 +21,8 @@ import TermsOfService from './components/TermsOfService';
 import FAQ from './components/FAQ';
 import About from './components/About';
 import SEO from './components/SEO';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
+import NotFound from './pages/NotFound';
 import { Menu, X } from 'lucide-react';
 
 function App() {
@@ -99,8 +103,10 @@ function App() {
     { label: 'Services', section: 'services' },
     { label: 'Process', section: 'process' },
     { label: 'Work', section: 'work' },
+    { label: 'Pricing', section: 'pricing' },
     { label: 'About', section: null, route: '/about' },
     { label: 'Blog', section: null, route: '/vault' },
+    { label: 'FAQ', section: 'faq' },
     { label: 'Contact', section: 'contact' },
   ];
 
@@ -236,6 +242,7 @@ function App() {
               <div className="relative z-10 bg-paper">
                 <Services />
                 <Process />
+                <Pricing />
                 <CaseStudies />
 
                 {/* ScrollVelocity Marquee between CaseStudies and Contact */}
@@ -245,6 +252,9 @@ function App() {
                   scrollerClassNames={['velocity-scroller', 'velocity-scroller velocity-scroller-sketch']}
                 />
 
+                <div id="faq">
+                  <FAQSection />
+                </div>
                 <InteractiveContact />
               </div>
             </>
@@ -300,7 +310,9 @@ function App() {
               <About />
             </>
           } />
+          <Route path="*" element={<NotFound />} />
         </Routes>
+        <FloatingWhatsApp />
       </div>
     </ClickSpark>
   );
