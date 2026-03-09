@@ -12,7 +12,7 @@ import InteractiveContact from './components/InteractiveContact';
 import ClickSpark from './components/ClickSpark';
 import Magnet from './components/Magnet';
 import ScrollVelocity from './components/ScrollVelocity';
-import Pricing from './components/Pricing';
+// import Pricing from './components/Pricing';
 import FAQSection from './components/FAQSection';
 import ThemeToggle from './components/ThemeToggle';
 import Vault from './components/Vault';
@@ -103,7 +103,7 @@ function App() {
     { label: 'Services', section: 'services' },
     { label: 'Process', section: 'process' },
     { label: 'Work', section: 'work' },
-    { label: 'Pricing', section: 'pricing' },
+    // { label: 'Pricing', section: 'pricing' },
     { label: 'About', section: null, route: '/about' },
     { label: 'Blog', section: null, route: '/vault' },
     { label: 'FAQ', section: 'faq' },
@@ -242,7 +242,7 @@ function App() {
               <div className="relative z-10 bg-paper">
                 <Services />
                 <Process />
-                <Pricing />
+                {/* <Pricing /> hidden temporarily */}
                 <CaseStudies />
 
                 {/* ScrollVelocity Marquee between CaseStudies and Contact */}
