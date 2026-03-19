@@ -3,32 +3,25 @@ import { Check } from 'lucide-react';
 
 const pricingTiers = [
     {
-        name: 'Starter Website',
+        name: 'Entry / Essential',
         price: 'R3,500',
-        description: 'Perfect for new businesses needing a professional digital presence.',
-        features: ['1-3 Pages', 'Mobile Responsive', 'Basic SEO Setup', 'Contact Form', 'WhatsApp Button'],
+        description: 'Budget-friendly tier for new businesses needing a professional digital presence.',
+        features: ['Up to 3 Pages', 'Mobile Responsive', 'Basic SEO Setup', 'Contact Form', 'WhatsApp Button'],
         highlight: false
     },
     {
-        name: 'Business Website',
-        price: 'R7,500',
-        description: 'Comprehensive multi-page site built for lead generation.',
-        features: ['Up to 10 Pages', 'Advanced SEO setup', 'CMS Integration', 'Custom Animations', 'Performance Optimized'],
-        highlight: false
-    },
-    {
-        name: 'eCommerce Store',
+        name: 'Premium / Pro',
         price: 'R12,000',
-        description: 'Fully functional online store to sell your products 24/7.',
-        features: ['Payment Gateway (PayFast)', 'Product Management', 'Cart & Checkout', 'Inventory Sync', 'Mobile-First Shopping'],
-        highlight: false
+        description: 'Comprehensive tier built for lead generation and e-commerce readiness.',
+        features: ['Up to 10 Pages', 'Advanced SEO Setup', 'Payment Gateway (PayFast)', 'Custom Animations', 'Performance Optimized'],
+        highlight: true
     },
     {
-        name: 'The Qroma Bundle',
-        price: 'R18,000',
-        description: 'Web + SEO + Automation. The ultimate growth engine.',
-        features: ['Custom Web App/Site', 'Local Google Maps SEO', 'WhatsApp Automation', 'CRM Setup', 'Lead Workflows'],
-        highlight: true
+        name: 'Custom / Enterprise',
+        price: 'Custom Pricing',
+        description: 'Bespoke solutions based on specific requirements, available for local and international clients.',
+        features: ['Custom Web App/Site', 'Tailored SEO & Automation', 'CRM Setup', 'Lead Workflows', 'Dedicated Support'],
+        highlight: false
     }
 ];
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import React, { Suspense } from 'react';
 
 const HeroScene = React.lazy(() => import('./components/HeroScene'));
@@ -12,7 +12,7 @@ import InteractiveContact from './components/InteractiveContact';
 import ClickSpark from './components/ClickSpark';
 import Magnet from './components/Magnet';
 import ScrollVelocity from './components/ScrollVelocity';
-// import Pricing from './components/Pricing';
+import Pricing from './components/Pricing';
 import FAQSection from './components/FAQSection';
 import ThemeToggle from './components/ThemeToggle';
 import Vault from './components/Vault';
@@ -23,7 +23,7 @@ import FAQ from './components/FAQ';
 import About from './components/About';
 import SEO from './components/SEO';
 
-import NotFound from './pages/NotFound';
+
 import { Menu, X } from 'lucide-react';
 
 function App() {
@@ -243,7 +243,7 @@ function App() {
               <div className="relative z-10 bg-paper">
                 <Services />
                 <Process />
-                {/* <Pricing /> hidden temporarily */}
+                <Pricing />
                 <CaseStudies />
 
                 {/* ScrollVelocity Marquee between CaseStudies and Contact */}
@@ -312,7 +312,7 @@ function App() {
               <About />
             </>
           } />
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
 
       </div>
