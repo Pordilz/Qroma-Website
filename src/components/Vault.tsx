@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import {
     Folder, Search, LayoutGrid, List, ChevronRight,
     Clock, Tag, ArrowLeft, Calendar,
-    Globe, Megaphone, Palette, Zap
+    Globe, Megaphone, Palette, Zap, Target
 } from 'lucide-react';
 
 import { posts, categories } from '../data/blogs';
@@ -15,6 +15,8 @@ const categoryIcons: Record<string, typeof Folder> = {
     Marketing: Megaphone,
     Automation: Zap,
     Design: Palette,
+    SEO: Search,
+    'Lead Generation': Target,
 };
 
 // ─── Component ───
