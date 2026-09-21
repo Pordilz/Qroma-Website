@@ -1,32 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://www.qroma.digital/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://www.qroma.digital/web-design-durban</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.qroma.digital/seo-services-durban</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.qroma.digital/business-automation</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.qroma.digital/digital-marketing-durban</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.qroma.digital/ecommerce-durban</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://www.qroma.digital/portfolio</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.qroma.digital/about</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://www.qroma.digital/contact</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://www.qroma.digital/blog</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
-  
-  <!-- SUBURBS -->
-  <url><loc>https://www.qroma.digital/web-design-umhlanga</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.qroma.digital/web-design-hillcrest</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.qroma.digital/web-design-westville</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.qroma.digital/web-design-pinetown</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.qroma.digital/web-design-ballito</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.qroma.digital/web-design-pietermaritzburg</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.qroma.digital/web-design-morningside-durban</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.qroma.digital/web-design-berea-durban</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.qroma.digital/web-design-durban-north</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://www.qroma.digital/web-design-la-lucia</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  
-  <!-- BLOGS -->
-  <url><loc>https://www.qroma.digital/blog/website-cost-durban-2025</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.qroma.digital/blog/business-automation-durban-smes</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.qroma.digital/blog/local-seo-durban-google-maps</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.qroma.digital/blog/web-design-for-restaurants-durban</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://www.qroma.digital/blog/whatsapp-automation-south-africa</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/</loc><lastmod>2026-09-20</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.qroma.digital/work</loc><lastmod>2026-09-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+
+  <!-- PROJECTS -->
+  <url><loc>https://www.qroma.digital/work/the-fixsir</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.qroma.digital/work/halaq</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.qroma.digital/work/the-ledger</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.qroma.digital/work/vidmetrics</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.qroma.digital/work/scentcast</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.qroma.digital/work/skylogger</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.qroma.digital/work/the-vault</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.qroma.digital/work/daybook</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- PAGES -->
+  <url><loc>https://www.qroma.digital/about</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.qroma.digital/faq</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.qroma.digital/blog</loc><lastmod>2026-09-20</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>
+
+  <!-- BLOG -->
+  <url><loc>https://www.qroma.digital/blog/website-cost-durban-2025</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/business-automation-durban-smes</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/local-seo-durban-google-maps</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/web-design-for-restaurants-durban</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/whatsapp-automation-south-africa</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/website-cost-south-africa-2026</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/web-design-vs-diy-website-builder-durban</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/business-automation-south-africa-sme</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/signs-your-website-is-losing-customers-2026</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/seo-small-business-kwazulu-natal-guide</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/online-lead-generation-durban-2026</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/mobile-first-website-south-africa-2026</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/google-my-business-durban-setup-guide-2026</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/ai-web-design-south-africa-2026</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://www.qroma.digital/blog/how-to-choose-web-design-agency-durban</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>
+
+  <!-- LEGAL -->
+  <url><loc>https://www.qroma.digital/privacy</loc><lastmod>2026-09-20</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.qroma.digital/terms</loc><lastmod>2026-09-20</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

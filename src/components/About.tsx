@@ -35,7 +35,7 @@ export default function About() {
                         transition={{ duration: 0.6, delay: 0.3 }}
                         className="text-xl text-ink/70 max-w-2xl mx-auto font-sketch"
                     >
-                        From late-night boredom to digital domination.
+                        From late-night boredom to a studio that ships.
                     </motion.p>
                 </div>
 
@@ -69,7 +69,13 @@ export default function About() {
                                 QromaDigital wasn't born in a boardroom. It was created by <strong className="text-ink">Yahya Paruk (Pordilz)</strong> and <strong className="text-ink">Ubaid Desai (Bumz)</strong> in Durban, South Africa, after one too many nights of just staring at screens and wasting time.
                             </p>
                             <p>
-                                We realized we were sitting on a goldmine of skills. We had access to powerful AI tools, a knack for technology, and a drive to do something more than just exist. We realized we could leverage these tools not just to help ourselves find purpose and employment, but to help others digitize and expand in this new digital world.
+                                We realised we were sitting on a goldmine of skills. We had access to powerful AI tools, a knack for technology, and a drive to do something more than just exist. So we started building — first for other people, then for ourselves.
+                            </p>
+                            <p>
+                                That second part is what changed us. Building websites for clients taught us the craft; building our own products taught us the judgement. Somewhere between shipping <strong className="text-ink">Halaq</strong> — a Shariah screener that refuses to publish a verdict two sources disagree on — and <strong className="text-ink">The Ledger</strong>, we stopped being an agency that takes briefs and became a studio that has opinions.
+                            </p>
+                            <p>
+                                Today Qroma is a development and creative studio. We build our own products, we take on a small number of client builds a year, and we care more about what a thing does than what it costs per page.
                             </p>
                         </div>
                     </div>
@@ -95,7 +101,7 @@ export default function About() {
                             <h3 className="text-2xl font-bold font-clean text-ink mb-1">Yahya Paruk</h3>
                             <p className="text-sm font-bold text-ink/40 uppercase tracking-widest mb-4">Pordilz</p>
                             <p className="text-ink/60 font-clean leading-relaxed">
-                                The visionary who saw the potential to turn "wasting time" into building a digital empire. Focused on leveraging AI to create smarter, faster solutions.
+                                Drives the product side — deciding what gets built and why. Most of what ships under Qroma's own name started as something he wanted to exist and could not find.
                             </p>
                         </div>
                     </motion.div>
@@ -118,7 +124,7 @@ export default function About() {
                             <h3 className="text-2xl font-bold font-clean text-ink mb-1">Ubaid Desai</h3>
                             <p className="text-sm font-bold text-ink/40 uppercase tracking-widest mb-4">Bumz</p>
                             <p className="text-ink/60 font-clean leading-relaxed">
-                                Siege Champ and tech enthusiast. Proving that the dedication required to master a game is the same dedication needed to master business.
+                                Siege champ and tech enthusiast. Brings the same obsessive attention to a build that he brings to a ranked ladder — the details nobody notices until they are wrong.
                             </p>
                         </div>
                     </motion.div>
@@ -138,20 +144,29 @@ export default function About() {
                             <Rocket className="w-8 h-8 opacity-80" />
                         </div>
                         <h2 className="text-3xl font-bold font-clean mb-6 tracking-tight">
-                            We Play Hard, We Work Harder.
+                            We Build, Then We Ship.
                         </h2>
                         <p className="text-lg opacity-80 font-clean leading-relaxed max-w-2xl mx-auto mb-8">
-                            We take a keen interest in this field because it's where we live. Qroma is our way of establishing ourselves and proving that you don't need a corporate background to build elite digital products. You just need the skills, the tools, and the drive.
+                            We take a keen interest in this field because it's where we live. Qroma is our way of proving that you don't need a corporate background to build elite digital products — you need the skills, the tools, and the willingness to put your own name on something and let people use it.
                         </p>
-                        <a
-                            href="https://github.com/Pordilz"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-8 py-3 bg-[var(--bg-paper)] text-[var(--ink-black)] font-bold font-clean rounded-full hover:scale-105 transition-transform duration-300"
-                        >
-                            <Github className="w-5 h-5" />
-                            View Our Code
-                        </a>
+                        <div className="flex flex-wrap items-center justify-center gap-4">
+                            <Link
+                                to="/work"
+                                className="inline-flex items-center gap-2 px-8 py-3 bg-[var(--bg-paper)] text-[var(--ink-black)] font-bold font-clean rounded-full hover:scale-105 transition-transform duration-300"
+                            >
+                                <Rocket className="w-5 h-5" />
+                                See What We Build
+                            </Link>
+                            <a
+                                href="https://github.com/Pordilz"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 px-8 py-3 border-2 border-[var(--bg-paper)]/40 text-[var(--bg-paper)] font-bold font-clean rounded-full hover:border-[var(--bg-paper)] transition-colors duration-300"
+                            >
+                                <Github className="w-5 h-5" />
+                                View Our Code
+                            </a>
+                        </div>
                     </div>
                 </motion.div>
             </div>

@@ -1,22 +1,13 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { ExternalLink, Heart, ChevronDown, Star, MessageSquareQuote, FolderOpen } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import {
+  ExternalLink, ChevronDown, Star, MessageSquareQuote, FolderOpen,
+  Github, FlaskConical, ArrowRight,
+} from 'lucide-react';
 import Folder from './Folder';
 import BlurText from './BlurText';
-
-const projects = [
-  {
-    id: 1,
-    title: 'The FixSir',
-    category: 'Healthcare',
-    description: 'Professional recovery therapy platform specializing in sports massage and Hijama cupping therapy for athletes in Durban.',
-    url: 'https://www.thefixsir.co.za/',
-    icon: Heart,
-    color: '#DC2626', // Medical red
-    tech: ['Next.js', 'WhatsApp API', 'Framer Motion'],
-    logo: '/fixsir-hero.webp',
-  },
-];
+import { featuredProjects, labItems, kindLabelsCompact, type Project } from '../data/projects';
 
 const testimonials = [
   {
@@ -30,10 +21,71 @@ const testimonials = [
   },
 ];
 
+// The four builds that carry their own imagery get the folder treatment.
+const folderProjects = featuredProjects.filter((p) => p.images && p.images.length > 0);
+const cardProjects = featuredProjects.filter((p) => !p.images || p.images.length === 0);
+
 export default function CaseStudies() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showAll, setShowAll] = useState(false);
-  const [panelTab, setPanelTab] = useState<'projects' | 'testimonials'>('projects');
+  const [panelTab, setPanelTab] = useState<'projects' | 'lab' | 'testimonials'>('projects');
+
+  // Papers inside a folder: each screenshot, then a tech-stack sheet, then a CTA sheet.
+  const buildFolderItems = (project: Project) => {
+    const papers: React.ReactNode[] = [];
+
+    (project.images ?? []).slice(0, 3).forEach((image) => {
+      papers.push(
+        <div
+          key={image.src}
+          className="w-full h-full bg-white border-2 border-[var(--ink-black)] overflow-hidden relative cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            setSelectedImage(image.src);
+          }}
+        >
+          <img
+            src={image.src}
+            alt={image.alt}
+            className="w-full h-full object-cover object-top"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white opacity-0 hover:opacity-100 transition-opacity">
+            <span className="text-[10px] font-bold uppercase tracking-wider">{image.label}</span>
+          </div>
+        </div>,
+      );
+    });
+
+    if (papers.length < 3) {
+      papers.push(
+        <div
+          key="stack"
+          className="w-full h-full bg-[var(--card-bg)] flex flex-col items-center justify-center p-2 border-2 border-[var(--ink-black)]"
+        >
+          <div className="text-center leading-tight">
+            {project.tech.slice(0, 4).map((tech) => (
+              <div key={tech} className="text-[8px] font-bold text-ink/80 font-clean">{tech}</div>
+            ))}
+          </div>
+        </div>,
+      );
+    }
+
+    if (papers.length < 3) {
+      papers.push(
+        <div
+          key="cta"
+          className="w-full h-full bg-[var(--card-bg)] flex flex-col items-center justify-center p-2 border-2 border-[var(--ink-black)]"
+        >
+          <project.icon size={20} color={project.color} strokeWidth={2} />
+          <span className="text-[8px] font-bold text-ink mt-1 font-clean">{project.status}</span>
+        </div>,
+      );
+    }
+
+    return papers;
+  };
 
   return (
     <section id="work" className="relative min-h-screen py-32 px-6 bg-paper">
@@ -41,7 +93,7 @@ export default function CaseStudies() {
         {/* Header */}
         <div className="text-center mb-20">
           <BlurText
-            text="Case Studies"
+            text="Selected Work"
             className="text-5xl md:text-6xl font-bold font-clean tracking-tighter text-ink mb-6"
             delay={80}
           />
@@ -52,163 +104,136 @@ export default function CaseStudies() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-xl text-ink/70 max-w-2xl mx-auto font-sketch"
           >
-            Real projects, real impact. Click the folders to explore our work.
+            Products we own, work we ship for clients, and infrastructure nobody sees. Click the folders to open them.
           </motion.p>
         </div>
 
         {/* Folder Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20">
-          {projects.map((project, index) => {
-            let folderItems;
+          {folderProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="flex flex-col items-center"
+            >
+              <Folder
+                color={project.color}
+                size={2.5}
+                items={buildFolderItems(project)}
+                className="mb-8"
+              />
 
-            if (project.title === 'The FixSir') {
-              folderItems = [
-                // Paper 1 (Left) - Testimonials
-                <div
-                  key="testimonials"
-                  className="w-full h-full bg-white border-2 border-[var(--ink-black)] overflow-hidden relative cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedImage('/fixsir-testimonials.webp');
-                  }}
-                >
-                  <img
-                    src="/fixsir-testimonials.webp"
-                    alt="Client Testimonials"
-                    className="w-full h-full object-cover object-top"
-                    loading="lazy"
-                  />
-                  {/* Fallback text if image missing (during dev) */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white opacity-0 hover:opacity-100 transition-opacity">
-                    <span className="text-[10px] font-bold uppercase tracking-wider">Client Reviews</span>
-                  </div>
-                </div>,
-                // Paper 2 (Right) - Services
-                <div
-                  key="services"
-                  className="w-full h-full bg-white border-2 border-[var(--ink-black)] overflow-hidden relative cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedImage('/fixsir-services.webp');
-                  }}
-                >
-                  <img
-                    src="/fixsir-services.webp"
-                    alt="Services List"
-                    className="w-full h-full object-cover object-top"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white opacity-0 hover:opacity-100 transition-opacity">
-                    <span className="text-[10px] font-bold uppercase tracking-wider">Services List</span>
-                  </div>
-                </div>,
-                // Paper 3 (Center/Top) - Hero
-                <div
-                  key="hero"
-                  className="w-full h-full bg-[#DC2626] border-2 border-[var(--ink-black)] overflow-hidden relative cursor-pointer"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setSelectedImage('/fixsir-hero.webp');
-                  }}
-                >
-                  <img
-                    src="/fixsir-hero.webp"
-                    alt="The FixSir Welcome"
-                    className="w-full h-full object-contain p-2"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white opacity-0 hover:opacity-100 transition-opacity">
-                    <span className="text-[10px] font-bold uppercase tracking-wider">The FixSir</span>
-                  </div>
-                </div>,
-              ];
-            } else {
-              folderItems = Array.from({ length: 3 }, (_, i) => (
-                <div key={i} className="w-full h-full">
-                  {/* Paper 1 - Logo/Icon */}
-                  {i === 0 && (
-                    <div className="w-full h-full bg-[var(--card-bg)] flex flex-col items-center justify-center p-2 border-2 border-[var(--ink-black)]">
-                      <project.icon size={32} color={project.color} strokeWidth={2} />
-                      <span className="text-xs font-bold text-ink mt-2 font-clean tracking-tighter">{project.title}</span>
-                    </div>
-                  )}
-                  {/* Paper 2 - Tech Stack */}
-                  {i === 1 && (
-                    <div className="w-full h-full bg-[var(--card-bg)] flex flex-col items-center justify-center p-2 border-2 border-[var(--ink-black)]">
-                      <div className="text-center">
-                        {project.tech.map((tech, t) => (
-                          <div key={t} className="text-[8px] font-bold text-ink/80 font-clean">{tech}</div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {/* Paper 3 - CTA */}
-                  {i === 2 && (
-                    <div className="w-full h-full bg-[var(--card-bg)] flex flex-col items-center justify-center p-2 border-2 border-[var(--ink-black)]">
-                      <ExternalLink size={20} color="currentColor" strokeWidth={2} />
-                      <span className="text-[8px] font-bold text-ink mt-1 font-clean">Visit Site</span>
-                    </div>
+              <div className="text-center max-w-md">
+                <div className="text-xs font-bold text-ink/50 mb-2 uppercase tracking-wider font-sketch">
+                  {project.category}
+                </div>
+                <h3 className="text-2xl font-bold text-ink mb-3 font-clean tracking-tighter">
+                  {project.title}
+                </h3>
+                <p className="text-ink/70 mb-6 leading-relaxed text-sm">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack Pills */}
+                <div className="flex flex-wrap gap-2 justify-center mb-6">
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-3 py-1 text-xs font-bold font-clean border-2 border-[var(--ink-black)] rounded-full hover:bg-[var(--ink-black)] hover:text-[var(--bg-paper)] transition-all duration-300 cursor-default"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Link
+                      to={`/work/${project.slug}`}
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--ink-black)] text-[var(--bg-paper)] font-bold font-clean tracking-tighter rounded-full hover:bg-transparent hover:text-[var(--ink-black)] border-2 border-[var(--ink-black)] transition-all duration-300"
+                    >
+                      Read the Build <ArrowRight size={16} />
+                    </Link>
+                  </motion.div>
+                  {project.url && (
+                    <motion.a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="inline-flex items-center gap-2 px-6 py-3 font-bold font-clean tracking-tighter rounded-full border-2 border-[var(--ink-black)]/20 text-ink hover:border-[var(--ink-black)] transition-all duration-300"
+                    >
+                      Visit Live <ExternalLink size={16} />
+                    </motion.a>
                   )}
                 </div>
-              ));
-            }
+              </div>
+            </motion.div>
+          ))}
+        </div>
 
-            return (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.5 }}
-                className="flex flex-col items-center"
+        {/* Secondary builds — no screenshots, so they get window cards instead of folders */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+          {cardProjects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.08, duration: 0.4 }}
+            >
+              <Link
+                to={`/work/${project.slug}`}
+                className="group flex flex-col h-full rounded-2xl border-2 border-[var(--ink-black)] bg-[var(--card-bg)] overflow-hidden hover:shadow-[8px_8px_0px_0px_var(--shadow-color)] hover:-translate-y-1 transition-all duration-300"
               >
-                {/* Folder */}
-                <Folder
-                  color={project.color}
-                  size={2.5}
-                  items={folderItems}
-                  className="mb-8"
-                />
-
-                {/* Project Info */}
-                <div className="text-center max-w-md">
-                  <div className="text-xs font-bold text-ink/50 mb-2 uppercase tracking-wider font-sketch">
-                    {project.category}
+                {/* Mac Title Bar */}
+                <div className="flex items-center justify-between px-5 py-3 bg-[var(--card-bg)] border-b-2 border-[var(--ink-black)]/10">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-[#ff5f57] border border-[#e0443e]" />
+                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
+                    <div className="w-3 h-3 rounded-full bg-[#28c840] border border-[#1aab29]" />
                   </div>
-                  <h3 className="text-2xl font-bold text-ink mb-3 font-clean tracking-tighter">
+                  <span className="text-xs font-bold tracking-wider uppercase text-[var(--ink-black)]/50 font-clean">
+                    {kindLabelsCompact[project.kind]}
+                  </span>
+                  <div className="w-16" />
+                </div>
+
+                <div className="p-6 flex flex-col flex-1">
+                  <div
+                    className="w-12 h-12 mb-5 rounded-xl border-2 flex items-center justify-center"
+                    style={{ borderColor: project.color + '40', background: project.color + '12' }}
+                  >
+                    <project.icon size={22} style={{ color: project.color }} />
+                  </div>
+                  <h3 className="text-lg font-bold text-ink font-clean tracking-tighter mb-2">
                     {project.title}
                   </h3>
-                  <p className="text-ink/70 mb-6 leading-relaxed text-sm">
-                    {project.description}
+                  <p className="text-sm text-ink/60 font-clean leading-relaxed mb-5 flex-1">
+                    {project.tagline}
                   </p>
-
-                  {/* Tech Stack Pills */}
-                  <div className="flex flex-wrap gap-2 justify-center mb-6">
-                    {project.tech.map((tech, i) => (
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {project.tech.slice(0, 3).map((tech) => (
                       <span
-                        key={i}
-                        className="px-3 py-1 text-xs font-bold font-clean border-2 border-[var(--ink-black)] rounded-full hover:bg-[var(--ink-black)] hover:text-[var(--bg-paper)] transition-all duration-300 cursor-default"
+                        key={tech}
+                        className="px-2 py-0.5 text-[10px] font-bold font-clean border-2 border-[var(--ink-black)]/15 rounded-full text-ink/60"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
-
-                  {/* Visit Button */}
-                  <motion.a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--ink-black)] text-[var(--bg-paper)] font-bold font-clean tracking-tighter rounded-full hover:bg-transparent hover:text-[var(--ink-black)] border-2 border-[var(--ink-black)] transition-all duration-300"
-                  >
-                    Visit Project <ExternalLink size={16} />
-                  </motion.a>
+                  <span className="inline-flex items-center gap-2 text-sm font-bold font-clean text-ink">
+                    Read the Build
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
                 </div>
-              </motion.div>
-            );
-          })}
+              </Link>
+            </motion.div>
+          ))}
         </div>
 
         {/* View All Projects Button */}
@@ -217,7 +242,7 @@ export default function CaseStudies() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="text-center mt-16"
+          className="text-center mt-16 flex flex-wrap items-center justify-center gap-4"
         >
           <motion.button
             onClick={() => setShowAll(!showAll)}
@@ -234,6 +259,13 @@ export default function CaseStudies() {
               <ChevronDown size={18} />
             </motion.span>
           </motion.button>
+
+          <Link
+            to="/work"
+            className="inline-flex items-center gap-2 px-8 py-4 font-bold font-clean tracking-tighter rounded-full border-2 border-[var(--ink-black)]/20 text-ink hover:border-[var(--ink-black)] transition-all duration-300"
+          >
+            Open the Archive <ArrowRight size={18} />
+          </Link>
         </motion.div>
 
         {/* Expanded All Projects Panel */}
@@ -256,26 +288,23 @@ export default function CaseStudies() {
                   </div>
                   {/* Tabs */}
                   <div className="flex items-center justify-center w-full md:w-auto gap-1 bg-[var(--bg-paper)] rounded-lg p-1 border border-[var(--ink-black)]/10">
-                    <button
-                      onClick={() => setPanelTab('projects')}
-                      className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold font-clean tracking-wider uppercase transition-all duration-200 ${panelTab === 'projects'
-                        ? 'bg-[var(--ink-black)] text-[var(--bg-paper)] shadow-sm'
-                        : 'text-ink/40 hover:text-ink/60'
-                        }`}
-                    >
-                      <FolderOpen className="w-3.5 h-3.5" />
-                      Projects
-                    </button>
-                    <button
-                      onClick={() => setPanelTab('testimonials')}
-                      className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold font-clean tracking-wider uppercase transition-all duration-200 ${panelTab === 'testimonials'
-                        ? 'bg-[var(--ink-black)] text-[var(--bg-paper)] shadow-sm'
-                        : 'text-ink/40 hover:text-ink/60'
-                        }`}
-                    >
-                      <MessageSquareQuote className="w-3.5 h-3.5" />
-                      Testimonials
-                    </button>
+                    {([
+                      { id: 'projects', label: 'Projects', Icon: FolderOpen },
+                      { id: 'lab', label: 'Lab', Icon: FlaskConical },
+                      { id: 'testimonials', label: 'Reviews', Icon: MessageSquareQuote },
+                    ] as const).map(({ id, label, Icon }) => (
+                      <button
+                        key={id}
+                        onClick={() => setPanelTab(id)}
+                        className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold font-clean tracking-wider uppercase transition-all duration-200 ${panelTab === id
+                          ? 'bg-[var(--ink-black)] text-[var(--bg-paper)] shadow-sm'
+                          : 'text-ink/40 hover:text-ink/60'
+                          }`}
+                      >
+                        <Icon className="w-3.5 h-3.5" />
+                        {label}
+                      </button>
+                    ))}
                   </div>
                   <div className="hidden md:block w-16" />
                 </div>
@@ -283,7 +312,7 @@ export default function CaseStudies() {
                 {/* Tab Content */}
                 <div className="p-6 md:p-8">
                   <AnimatePresence mode="wait">
-                    {panelTab === 'projects' ? (
+                    {panelTab === 'projects' && (
                       <motion.div
                         key="projects"
                         initial={{ opacity: 0, y: 10 }}
@@ -292,14 +321,14 @@ export default function CaseStudies() {
                         transition={{ duration: 0.3 }}
                       >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                          {projects.map((project, index) => {
+                          {featuredProjects.map((project, index) => {
                             const Icon = project.icon;
                             return (
                               <motion.div
                                 key={project.id}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.1 }}
+                                transition={{ delay: index * 0.05 }}
                                 className="group p-6 rounded-xl border-2 border-[var(--ink-black)]/10 hover:border-[var(--ink-black)]/30 bg-[var(--bg-paper)] hover:shadow-[4px_4px_0px_0px_var(--shadow-color)] transition-all duration-300"
                               >
                                 {/* Header */}
@@ -311,44 +340,41 @@ export default function CaseStudies() {
                                       background: project.color + '10',
                                     }}
                                   >
-                                    {project.logo ? (
+                                    {project.images?.[0] ? (
                                       <img
-                                        src={project.logo}
+                                        src={project.images[0].src}
                                         alt={project.title}
-                                        className="w-full h-full object-contain p-1.5"
+                                        className="w-full h-full object-cover object-top"
+                                        loading="lazy"
                                       />
                                     ) : (
-                                      <>
-                                        <Icon className="w-6 h-6" style={{ color: project.color }} />
-                                        <div
-                                          className="absolute top-0 right-0 w-4 h-4"
-                                          style={{
-                                            background: `linear-gradient(135deg, ${project.color}20 50%, ${project.color}40 50%)`,
-                                          }}
-                                        />
-                                      </>
+                                      <Icon className="w-6 h-6" style={{ color: project.color }} />
                                     )}
                                   </div>
                                   <div className="flex-1 min-w-0">
                                     <div className="text-[10px] font-bold text-ink/40 uppercase tracking-[0.15em] mb-1 font-clean">
-                                      {project.category}
+                                      {project.category} · {project.year}
                                     </div>
                                     <h3 className="text-lg font-bold font-clean text-ink tracking-tighter">
                                       {project.title}
                                     </h3>
                                   </div>
+                                  <span
+                                    className="text-[10px] font-bold font-clean uppercase tracking-wider px-2 py-1 rounded-md whitespace-nowrap"
+                                    style={{ color: project.color, background: project.color + '15' }}
+                                  >
+                                    {project.status}
+                                  </span>
                                 </div>
 
-                                {/* Description */}
                                 <p className="text-sm text-ink/60 font-clean leading-relaxed mb-5">
                                   {project.description}
                                 </p>
 
-                                {/* Tech Stack */}
                                 <div className="flex flex-wrap gap-2 mb-5">
-                                  {project.tech.map((tech, i) => (
+                                  {project.tech.map((tech) => (
                                     <span
-                                      key={i}
+                                      key={tech}
                                       className="px-2.5 py-1 text-[10px] font-bold font-clean border-2 border-[var(--ink-black)]/15 rounded-full text-ink/60"
                                     >
                                       {tech}
@@ -356,22 +382,122 @@ export default function CaseStudies() {
                                   ))}
                                 </div>
 
-                                {/* Visit Link */}
-                                <a
-                                  href={project.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="inline-flex items-center gap-2 text-sm font-bold font-clean text-ink hover:text-ink/60 transition-colors group/link"
-                                >
-                                  Visit Project
-                                  <ExternalLink className="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                                </a>
+                                <div className="flex flex-wrap items-center gap-4">
+                                  <Link
+                                    to={`/work/${project.slug}`}
+                                    className="inline-flex items-center gap-2 text-sm font-bold font-clean text-ink hover:text-ink/60 transition-colors group/link"
+                                  >
+                                    Read the Build
+                                    <ArrowRight className="w-4 h-4 group-hover/link:translate-x-0.5 transition-transform" />
+                                  </Link>
+                                  {project.url && (
+                                    <a
+                                      href={project.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-2 text-sm font-bold font-clean text-ink/50 hover:text-ink transition-colors"
+                                    >
+                                      Live <ExternalLink className="w-3.5 h-3.5" />
+                                    </a>
+                                  )}
+                                  {project.repo && (
+                                    <a
+                                      href={project.repo}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-2 text-sm font-bold font-clean text-ink/50 hover:text-ink transition-colors"
+                                    >
+                                      Source <Github className="w-3.5 h-3.5" />
+                                    </a>
+                                  )}
+                                </div>
                               </motion.div>
                             );
                           })}
                         </div>
                       </motion.div>
-                    ) : (
+                    )}
+
+                    {panelTab === 'lab' && (
+                      <motion.div
+                        key="lab"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p className="text-sm text-ink/50 font-clean leading-relaxed mb-6 max-w-2xl">
+                          Smaller builds — games, solvers and tools. Some solve a problem, some exist because the
+                          problem looked fun. Nothing here is a product; everything here taught us something we now use.
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {labItems.map((item, index) => {
+                            const Icon = item.icon;
+                            return (
+                              <motion.div
+                                key={item.id}
+                                initial={{ opacity: 0, y: 16 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.03 }}
+                                className="group p-5 rounded-xl border-2 border-[var(--ink-black)]/10 hover:border-[var(--ink-black)]/30 bg-[var(--bg-paper)] hover:shadow-[4px_4px_0px_0px_var(--shadow-color)] transition-all duration-300 flex flex-col"
+                              >
+                                <div className="flex items-center gap-3 mb-3">
+                                  <div
+                                    className="w-9 h-9 rounded-lg flex items-center justify-center border-2 flex-shrink-0"
+                                    style={{ borderColor: item.color + '40', background: item.color + '12' }}
+                                  >
+                                    <Icon className="w-4 h-4" style={{ color: item.color }} />
+                                  </div>
+                                  <h4 className="text-sm font-bold font-clean text-ink tracking-tighter flex-1">
+                                    {item.title}
+                                  </h4>
+                                  <span className="text-[9px] font-bold font-clean uppercase tracking-wider text-ink/30">
+                                    {item.tag}
+                                  </span>
+                                </div>
+                                <p className="text-xs text-ink/55 font-clean leading-relaxed mb-4 flex-1">
+                                  {item.blurb}
+                                </p>
+                                <div className="flex flex-wrap gap-1.5 mb-4">
+                                  {item.tech.map((tech) => (
+                                    <span
+                                      key={tech}
+                                      className="px-2 py-0.5 text-[9px] font-bold font-clean border border-[var(--ink-black)]/15 rounded-full text-ink/50"
+                                    >
+                                      {tech}
+                                    </span>
+                                  ))}
+                                </div>
+                                <div className="flex items-center gap-3">
+                                  {item.url && (
+                                    <a
+                                      href={item.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1.5 text-xs font-bold font-clean text-ink hover:text-ink/60 transition-colors"
+                                    >
+                                      Try it <ExternalLink className="w-3 h-3" />
+                                    </a>
+                                  )}
+                                  {item.repo && (
+                                    <a
+                                      href={item.repo}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="inline-flex items-center gap-1.5 text-xs font-bold font-clean text-ink/50 hover:text-ink transition-colors"
+                                    >
+                                      Source <Github className="w-3 h-3" />
+                                    </a>
+                                  )}
+                                </div>
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {panelTab === 'testimonials' && (
                       <motion.div
                         key="testimonials"
                         initial={{ opacity: 0, y: 10 }}

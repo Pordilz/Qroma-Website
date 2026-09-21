@@ -269,14 +269,22 @@ export default function BlogPost() {
 
                 {/* Footer Read Next / CTA */}
                 <div className="border-t-2 border-[var(--ink-black)]/10 pt-10 mt-10">
-                    <h3 className="text-2xl font-bold font-clean text-ink mb-4 tracking-tighter">Ready to scale your business?</h3>
-                    <p className="text-ink/60 font-clean mb-6">If you enjoyed this read and are looking for expert web development and automation in South Africa, get in touch with Qroma Digital today.</p>
-                    <Link
-                        to="/#contact"
-                        className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--ink-black)] text-[var(--bg-paper)] rounded-xl font-bold uppercase tracking-wider text-sm hover:bg-transparent hover:text-[var(--ink-black)] border-2 border-[var(--ink-black)] transition-all duration-300"
-                    >
-                        Work with Us
-                    </Link>
+                    <h3 className="text-2xl font-bold font-clean text-ink mb-4 tracking-tighter">Want to see what we actually build?</h3>
+                    <p className="text-ink/60 font-clean mb-6">Qroma is a development and creative studio in Durban. We build our own products and take on a small number of client builds each year.</p>
+                    <div className="flex flex-wrap gap-3">
+                        <Link
+                            to="/work"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--ink-black)] text-[var(--bg-paper)] rounded-xl font-bold uppercase tracking-wider text-sm hover:bg-transparent hover:text-[var(--ink-black)] border-2 border-[var(--ink-black)] transition-all duration-300"
+                        >
+                            See Our Work
+                        </Link>
+                        <Link
+                            to="/#contact"
+                            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold uppercase tracking-wider text-sm border-2 border-[var(--ink-black)]/20 text-ink hover:border-[var(--ink-black)] transition-all duration-300"
+                        >
+                            Start a Build
+                        </Link>
+                    </div>
                 </div>
 
             </motion.div>

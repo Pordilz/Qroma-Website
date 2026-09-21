@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useDragControls } from 'framer-motion';
-import { Code, TrendingUp, Zap, Terminal, Search, Layout, Box, Gamepad2, Download } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Code, Palette, Zap, Terminal, Search, Layout, Swords, Rocket, ArrowRight } from 'lucide-react';
 import SpotlightCard from './SpotlightCard';
 import BlurText from './BlurText';
 
 // --- Types ---
-type ServiceId = 'web' | 'marketing' | 'automation' | 'terminal';
+type ServiceId = 'product' | 'studio' | 'systems' | 'terminal';
 
 interface Service {
     id: ServiceId;
@@ -18,27 +19,27 @@ interface Service {
 
 const services: Service[] = [
     {
-        id: 'web',
-        title: 'Web Dev.app',
+        id: 'product',
+        title: 'Product_app',
         icon: Code,
-        description: 'Custom sites and applications built with architectural precision.',
-        features: ['Responsive design', 'Progressive web apps', 'E-commerce platforms', 'Custom applications'],
+        description: 'Applications, platforms and sites — architected, built and shipped.',
+        features: ['Web & product applications', 'Native mobile builds', 'Commerce and payments', 'Performance engineering'],
         color: '#FF3B30', // Mac red-ish generic
     },
     {
-        id: 'marketing',
-        title: 'Growth.exe',
-        icon: TrendingUp,
-        description: 'Data-driven strategies drafted for measurable growth.',
-        features: ['SEO optimization', 'Content strategy', 'Social media marketing', 'Performance analytics'],
+        id: 'studio',
+        title: 'Studio_dsn',
+        icon: Palette,
+        description: 'Identity, interface and motion. The part people actually feel.',
+        features: ['Brand & visual identity', 'Interface and interaction design', 'Motion, 3D and the web weird', 'Content and search strategy'],
         color: '#4CD964', // Mac green-ish generic
     },
     {
-        id: 'automation',
-        title: 'AutoBot_v2',
+        id: 'systems',
+        title: 'Systems_v2',
         icon: Zap,
-        description: 'Streamlined operations with intelligent workflow design.',
-        features: ['Process automation', 'AI integration', 'Workflow optimization', 'Custom API development'],
+        description: 'The machinery underneath — automation, data and infrastructure.',
+        features: ['Workflow automation', 'APIs and data pipelines', 'AI-assisted tooling', 'Infrastructure as code'],
         color: '#007AFF', // Mac blue-ish generic
     },
     {
@@ -123,23 +124,28 @@ const Window = ({
                                 </div>
 
                                 <div className="mt-4">
-                                    <p>➜  ~  sudo make_website_pop</p>
-                                    <p className="opacity-80">Access granted. Deploying visual_delight.sh...</p>
+                                    <p>➜  ~  sudo ship_it --no-excuses</p>
+                                    <p className="opacity-80">Access granted. Deploying ship_it.sh...</p>
                                 </div>
 
                                 <div className="mt-4">
-                                    <p>➜  ~  access_database --query="service_packages_&_pricing"</p>
-                                    <p className="opacity-80 py-2">▸ Locating strategic_growth_assets... <span className="font-bold text-green-500">[FOUND]</span></p>
-                                    <p className="opacity-80 pb-2">▸ Preparing secure download...</p>
-                                    <a
-                                        href="/proposal.pdf"
-                                        download="Qroma_Proposal.pdf"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--ink-black)] text-[var(--bg-paper)] hover:bg-transparent hover:text-[var(--ink-black)] border border-[var(--ink-black)] transition-all text-xs font-bold uppercase tracking-wider"
-                                    >
-                                        [ DOWNLOAD_PROPOSAL.pdf ]
-                                    </a>
+                                    <p>➜  ~  ls ./work --all</p>
+                                    <p className="opacity-80 py-2">▸ Locating project_archive... <span className="font-bold text-green-500">[20 FOUND]</span></p>
+                                    <p className="opacity-80 pb-2">▸ Mounting archive...</p>
+                                    <div className="flex flex-wrap gap-2">
+                                        <Link
+                                            to="/work"
+                                            className="inline-flex items-center gap-2 px-3 py-1 bg-[var(--ink-black)] text-[var(--bg-paper)] hover:bg-transparent hover:text-[var(--ink-black)] border border-[var(--ink-black)] transition-all text-xs font-bold uppercase tracking-wider"
+                                        >
+                                            [ OPEN_ARCHIVE ]
+                                        </Link>
+                                        <a
+                                            href="#contact"
+                                            className="inline-flex items-center gap-2 px-3 py-1 border border-[var(--ink-black)] hover:bg-[var(--ink-black)] hover:text-[var(--bg-paper)] transition-all text-xs font-bold uppercase tracking-wider"
+                                        >
+                                            [ START_A_BUILD ]
+                                        </a>
+                                    </div>
                                 </div>
 
                                 <p className="mt-4">qroma-system: ~ user$ <span className="animate-pulse">_</span></p>
@@ -230,12 +236,12 @@ const Dock = ({
 
 // --- Main ServicesOS Component ---
 export default function ServicesOS() {
-    const [openWindows, setOpenWindows] = useState<ServiceId[]>(['web', 'marketing', 'automation']);
-    const [activeWindow, setActiveWindow] = useState<ServiceId | null>('web');
+    const [openWindows, setOpenWindows] = useState<ServiceId[]>(['product', 'studio', 'systems']);
+    const [activeWindow, setActiveWindow] = useState<ServiceId | null>('product');
     const [positions, setPositions] = useState<Record<ServiceId, { x: number; y: number }>>({
-        web: { x: 50, y: 50 },
-        marketing: { x: 400, y: 100 },
-        automation: { x: 200, y: 250 },
+        product: { x: 50, y: 50 },
+        studio: { x: 400, y: 100 },
+        systems: { x: 200, y: 250 },
         terminal: { x: 100, y: 100 }
     });
     const constraintsRef = useRef(null);
@@ -262,9 +268,9 @@ export default function ServicesOS() {
                 const totalContentWidth = (windowWidth * 3) + (gap * 2);
                 const startX = Math.max(0, (width - totalContentWidth) / 2);
                 setPositions({
-                    web: { x: startX, y: topMargin },
-                    marketing: { x: startX + windowWidth + gap, y: topMargin },
-                    automation: { x: startX + (windowWidth * 2) + (gap * 2), y: topMargin },
+                    product: { x: startX, y: topMargin },
+                    studio: { x: startX + windowWidth + gap, y: topMargin },
+                    systems: { x: startX + (windowWidth * 2) + (gap * 2), y: topMargin },
                     terminal: { x: startX + 200, y: topMargin + 200 }
                 });
             }
@@ -273,9 +279,9 @@ export default function ServicesOS() {
                 const totalContentWidth = (windowWidth * 2) + gap;
                 const startX = Math.max(0, (width - totalContentWidth) / 2);
                 setPositions({
-                    web: { x: startX, y: topMargin },
-                    marketing: { x: startX + windowWidth + gap, y: topMargin },
-                    automation: { x: (width - windowWidth) / 2, y: topMargin + windowHeight + gap },
+                    product: { x: startX, y: topMargin },
+                    studio: { x: startX + windowWidth + gap, y: topMargin },
+                    systems: { x: (width - windowWidth) / 2, y: topMargin + windowHeight + gap },
                     terminal: { x: startX + 100, y: topMargin + 300 }
                 });
             }
@@ -288,9 +294,9 @@ export default function ServicesOS() {
                 const startY = Math.max(20, topMargin);
 
                 setPositions({
-                    web: { x: startX, y: startY },
-                    marketing: { x: startX + offset, y: startY + offset },
-                    automation: { x: startX + (offset * 2), y: startY + (offset * 2) },
+                    product: { x: startX, y: startY },
+                    studio: { x: startX + offset, y: startY + offset },
+                    systems: { x: startX + (offset * 2), y: startY + (offset * 2) },
                     terminal: { x: startX + (offset * 3), y: startY + (offset * 3) }
                 });
             }
@@ -335,11 +341,11 @@ export default function ServicesOS() {
             <div className="block md:hidden py-32 px-6">
                 <div className="text-center mb-16">
                     <BlurText
-                        text="Our Services"
+                        text="What We Build"
                         className="text-4xl font-bold font-clean tracking-tighter text-[var(--ink-black)] mb-4"
                         delay={80}
                     />
-                    <p className="text-[var(--ink-black)]/60 font-sketch">Digital tools for modern problems.</p>
+                    <p className="text-[var(--ink-black)]/60 font-sketch">Three disciplines. One studio.</p>
                 </div>
                 <div className="grid grid-cols-1 gap-8">
                     {services.map((service) => {
@@ -362,28 +368,25 @@ export default function ServicesOS() {
                                             <service.icon size={32} />
                                         </div>
                                         <h3 className="text-2xl font-bold text-[var(--ink-black)] mb-2 font-mono tracking-tighter">
-                                            {'>'} Access_Proposal_
+                                            {'>'} Open_Archive_
                                         </h3>
                                         <p className="text-[var(--ink-black)]/70 mb-4 leading-relaxed font-mono text-sm">
-                                            // FULL_SERVICE_BREAKDOWN<br />
-                                            // PRICING_&_PACKAGES_INCLUDED
+                                            // FULL_PROJECT_ARCHIVE<br />
+                                            // SOURCE_&_LIVE_LINKS_INCLUDED
                                         </p>
 
                                         <div className="mt-8 border-t-2 border-dashed border-[var(--ink-black)]/20 pt-6">
                                             <div className="flex items-center gap-2 mb-4">
                                                 <Terminal size={14} className="opacity-50" />
-                                                <p className="text-xs font-mono text-[var(--ink-black)]/60">execute ./download_pdf.sh</p>
+                                                <p className="text-xs font-mono text-[var(--ink-black)]/60">execute ./list_work.sh</p>
                                             </div>
-                                            <a
-                                                href="/proposal.pdf"
-                                                download="Qroma_Proposal.pdf"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
+                                            <Link
+                                                to="/work"
                                                 className="group/btn w-full inline-flex items-center justify-center gap-3 px-6 py-4 bg-[var(--ink-black)] text-[var(--bg-paper)] font-mono font-bold tracking-widest uppercase text-sm border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300 hover:shadow-[4px_4px_0px_var(--ink-black)]"
                                             >
-                                                <span>[ INIT_DOWNLOAD ]</span>
-                                                <Download size={18} className="group-hover/btn:translate-y-1 transition-transform" />
-                                            </a>
+                                                <span>[ BROWSE_WORK ]</span>
+                                                <ArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                                            </Link>
                                         </div>
                                     </div>
                                 </SpotlightCard>
@@ -444,25 +447,35 @@ export default function ServicesOS() {
                 {/* Desktop Area */}
                 <div className="flex-1 relative p-4" ref={constraintsRef}>
 
-                    {/* Desktop Icons (Background elements) */}
+                    {/* Desktop Icons — things we actually built, sitting on the desktop */}
                     <div className="absolute top-8 left-8 flex flex-col gap-8 pointer-events-none opacity-50 z-0 select-none">
-                        <div className="flex flex-col items-center gap-2 group cursor-pointer pointer-events-auto transition-opacity hover:opacity-100">
+                        <a
+                            href="https://github.com/Pordilz/Pirate-Platformer"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex flex-col items-center gap-2 group cursor-pointer pointer-events-auto transition-opacity hover:opacity-100"
+                        >
                             <div className="w-16 h-16 border-2 border-[var(--ink-black)] bg-[var(--bg-paper)] shadow-[4px_4px_0px_var(--shadow-color)] flex items-center justify-center -rotate-2 group-hover:rotate-0 transition-transform">
-                                <Box size={32} className="text-[var(--ink-black)]" />
+                                <Swords size={32} className="text-[var(--ink-black)]" />
                             </div>
                             <span className="text-xs font-bold bg-[var(--bg-paper)] px-2 py-0.5 border border-[var(--ink-black)] text-[var(--ink-black)] shadow-[2px_2px_0px_var(--shadow-color)]">
-                                Minecraft
+                                Pirate.py
                             </span>
-                        </div>
+                        </a>
 
-                        <div className="flex flex-col items-center gap-2 group cursor-pointer pointer-events-auto transition-opacity hover:opacity-100">
+                        <a
+                            href="https://github.com/Pordilz/JumpMan"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex flex-col items-center gap-2 group cursor-pointer pointer-events-auto transition-opacity hover:opacity-100"
+                        >
                             <div className="w-16 h-16 border-2 border-[var(--ink-black)] bg-[var(--bg-paper)] shadow-[4px_4px_0px_var(--shadow-color)] flex items-center justify-center rotate-3 group-hover:rotate-0 transition-transform relative">
-                                <Gamepad2 size={32} className="text-[var(--ink-black)]" />
+                                <Rocket size={32} className="text-[var(--ink-black)]" />
                             </div>
                             <span className="text-xs font-bold bg-[var(--bg-paper)] px-2 py-0.5 border border-[var(--ink-black)] text-[var(--ink-black)] shadow-[2px_2px_0px_var(--shadow-color)]">
-                                Overwatch
+                                JumpMan
                             </span>
-                        </div>
+                        </a>
                     </div>
 
                     {/* Windows */}

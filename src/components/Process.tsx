@@ -5,27 +5,27 @@ import { Lightbulb, Palette, Code2, Rocket } from 'lucide-react';
 const steps = [
   {
     icon: Lightbulb,
-    title: 'Discovery',
+    title: 'Define',
     description:
-      'We sketch out your business goals, target audience, and market landscape to build a rock-solid foundation for your project.',
+      'We work out what actually needs to exist — the real problem, who has it, and what the smallest useful version looks like. Half this step is cutting scope.',
   },
   {
     icon: Palette,
     title: 'Design',
     description:
-      'Our architects draft stunning, user-centric experiences with wireframes, prototypes, and a visual identity that sets you apart.',
+      'Interface, identity and flow, drafted as something you can click rather than something you have to imagine. Decisions get made here, not during the build.',
   },
   {
     icon: Code2,
-    title: 'Development',
+    title: 'Build',
     description:
-      'Expert builders construct your vision with clean, scalable code — turning designs into a high-performance reality.',
+      'Clean, typed, scalable code. We build in the open with working deploys from week one, so you are never waiting on a reveal to find out where it stands.',
   },
   {
     icon: Rocket,
-    title: 'Launch',
+    title: 'Ship & Iterate',
     description:
-      'We deploy your solution, fine-tune every detail, and optimize for maximum impact from day one.',
+      'We launch, watch how it is actually used, and keep sharpening it. Shipping is the middle of the process, not the end of it.',
   },
 ];
 
@@ -98,10 +98,10 @@ export default function Process() {
           className="text-center mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-bold font-clean tracking-tighter text-ink mb-6">
-            Our Process
+            How We Build
           </h2>
           <p className="text-xl text-ink/70 max-w-2xl mx-auto font-sketch">
-            From sketch to reality
+            The same four steps, whether it's ours or yours
           </p>
         </motion.div>
 

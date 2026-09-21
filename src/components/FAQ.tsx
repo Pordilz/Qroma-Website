@@ -1,74 +1,94 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, HelpCircle, ChevronDown, Zap, Globe, Shield } from 'lucide-react';
+import { ArrowLeft, HelpCircle, ChevronDown, Handshake, Globe, Shield } from 'lucide-react';
 import { useState } from 'react';
 
 const faqCategories = [
     {
-        title: 'General',
+        title: 'The Studio',
         icon: HelpCircle,
         color: '#3b82f6',
         questions: [
             {
-                q: 'What services does Qroma offer?',
-                a: 'We specialize in three core areas:\n\n• **Web Development:** Custom high-performance websites and e-commerce stores.\n• **Automation:** Streamlining business processes with custom workflows and integrations.\n• **Digital Marketing:** Strategic growth campaigns and content creation to boost your online presence.'
+                q: 'What does Qroma actually do?',
+                a: 'We are a development and creative studio. We work across three disciplines:\n\n• **Product:** web applications, platforms, sites and native mobile builds.\n• **Studio:** brand, interface, motion and the design layer on top.\n• **Systems:** automation, APIs, data pipelines and infrastructure as code.\n\nMost projects touch all three, which is why we do not sell them separately.'
+            },
+            {
+                q: 'Are you an agency or a product company?',
+                a: 'Both, on purpose. We build and run our own products — **Halaq** (Shariah equity screening), **The Ledger** (an IFRS teaching tool) and **VidMetrics** (YouTube competitive intelligence) — and we take on a small number of client builds each year.\n\nOwning products keeps us honest. We make the same architecture, cost and scope decisions on our own money before we make them on yours.'
             },
             {
                 q: 'Where are you based?',
-                a: 'We are proudly based in **Durban, South Africa**, but we work with clients globally. Our digital-first approach means we can collaborate effectively regardless of location.'
+                a: 'We are based in **Durban, KwaZulu-Natal**, and work with clients across South Africa and internationally. Most of our work is remote by default.'
             },
             {
-                q: 'Do you offer support after launch?',
-                a: 'Absolutely. We offer a "Peace of Mind" maintenance plan (R300/mo) which includes reliable hosting, weekly security updates, automated backups, and tech support so you never have to worry about your site going down.'
+                q: 'How big is the team?',
+                a: 'Small and deliberately so. Qroma was founded by **Yahya Paruk** and **Ubaid Desai**, and we bring in specialists when a project genuinely needs them. You talk to the people building your thing — there is no account manager in the middle.'
             }
         ]
     },
     {
-        title: 'Web Development',
-        icon: Globe,
+        title: 'Working Together',
+        icon: Handshake,
         color: '#10b981',
         questions: [
             {
-                q: 'How long does it take to build a website?',
-                a: 'Timelines vary based on complexity:\n\n• **Starter Sites:** Typically 5-7 days\n• **Small Business Sites:** 2-3 weeks\n• **E-Commerce Stores:** 3-4 weeks\n\nNote: Timelines strictly begin once we have received all your content (text, images, branding).'
+                q: 'What are the three engagement models?',
+                a: '• **Build** — a defined project with fixed scope and timeline. You know what you need; we scope, quote and ship it.\n• **Partner** — a monthly retainer with reserved capacity, for teams shipping continuously.\n• **Lab** — we co-build a product with you, structured around shared risk and shared upside. Selective, a few at a time.'
             },
             {
-                q: 'Will my website work on mobile phones?',
-                a: 'Yes! Every site we build is **fully responsive** and optimized for all devices—from large desktop monitors to tablets and smartphones.'
+                q: 'Why did you drop fixed packages?',
+                a: 'Because packages price **pages**, not outcomes. A five-page site that has to take payments, sync a CRM and rank locally is not the same job as a five-page brochure, and pretending otherwise meant either underquoting the hard work or overcharging the simple version.\n\nWe scope the actual problem and quote that instead.'
             },
             {
-                q: 'Can I update the website myself?',
-                a: 'We build custom-coded sites for maximum performance and design flexibility, which means updates are handled directly in the code. For small text or image changes, simply send us a message and we handle it for you—often within 24 hours. For larger feature updates, we\'ll discuss the requirements and implement them for you.'
+                q: 'How long does a build take?',
+                a: 'Depends on what it is:\n\n• **Focused marketing site:** 2–4 weeks\n• **Web application with real functionality:** 6–12 weeks\n• **Product with integrations, payments or data pipelines:** longer, scoped case by case\n\nTimelines start once we have your content and branding. We work in shipped increments, so something is running and reviewable from week one.'
+            },
+            {
+                q: 'Do you still build standard business websites?',
+                a: 'Yes, and we build plenty of them. A well-built marketing site is still one of the highest-return assets a business can own.\n\nThe difference is that we treat it as a product with a job to do, not as a number of pages on a price list.'
             }
         ]
     },
     {
-        title: 'Automation & Marketing',
-        icon: Zap,
+        title: 'Technical',
+        icon: Globe,
         color: '#f59e0b',
         questions: [
             {
-                q: 'What is business automation?',
-                a: 'Automation involves using software to handle repetitive tasks—like sending follow-up emails, syncing leads to a spreadsheet, or generating invoices. We build custom workflows that save you hours of manual work every week.'
+                q: 'What do you build with?',
+                a: 'Mostly **React, Next.js and TypeScript** on the front end, **Node** or **Python** on the back, **PostgreSQL** or **Supabase** for data, and **Terraform** where infrastructure needs to be reproducible. Native mobile is **Kotlin** on Android.\n\nWe pick the stack for the problem, not the other way round — but we do not chase novelty on a client\'s budget.'
             },
             {
-                q: 'How does the WhatsApp integration work?',
-                a: 'We can integrate WhatsApp directly into your site or sales process, allowing customers to book appointments, ask questions, or receive updates instantly on the platform they use most.'
+                q: 'Who owns the code?',
+                a: 'You do. On client builds, ownership transfers on final payment, into a repository you control. We will not hold your codebase, domain or hosting hostage.\n\nLab engagements work differently and are agreed in writing up front.'
+            },
+            {
+                q: 'Can I update the site myself?',
+                a: 'It depends on what we build. For content-heavy sites we wire up a CMS so you can edit without touching code. For custom applications, structural changes go through us — but small copy and image updates are usually handled within 24 hours.\n\nWe will tell you which model fits before we start, not after.'
+            },
+            {
+                q: 'Do you offer support after launch?',
+                a: 'Yes. Ongoing maintenance — hosting, security updates, backups and support — is available as a monthly retainer, quoted against what your build actually needs to stay healthy.'
             }
         ]
     },
     {
-        title: 'Pricing & Payments',
+        title: 'Money',
         icon: Shield,
         color: '#ef4444',
         questions: [
             {
+                q: 'What does a project cost?',
+                a: 'Every project is quoted against its scope. Small focused builds start low; products with integrations, payments and data infrastructure cost considerably more.\n\nThe fastest way to a real number is to tell us what you are trying to do. We will come back with a scope and a price, not a brochure.'
+            },
+            {
                 q: 'What are your payment terms?',
-                a: 'We typically require a **50% deposit** to commence work, with the remaining 50% due upon completion and before the site goes live. For verified ongoing clients, we may offer milestone-based payment plans.'
+                a: 'We typically require a **50% deposit** to commence work, with the balance due on completion and before go-live. For retainer clients and longer builds we work to milestone-based schedules.'
             },
             {
                 q: 'Are there any hidden costs?',
-                a: 'No. We are transparent about all costs upfront. The only recurring cost is for hosting/maintenance (if you choose our plan) and any third-party software subscriptions (like tailored premium plugins) which we will discuss with you beforehand.'
+                a: 'No. We are transparent about all costs upfront. The only recurring costs are hosting and maintenance (if you take a retainer) and any third-party subscriptions — payment gateways, APIs, premium services — which we flag and discuss before committing you to them.'
             }
         ]
     }
@@ -128,7 +148,7 @@ export default function FAQ() {
                             Frequently Asked Questions
                         </h1>
                         <p className="text-ink/60 text-lg font-clean max-w-lg mx-auto leading-relaxed">
-                            Everything you need to know about our services, process, and pricing. Can't find the answer? <a href="mailto:Qromatech@gmail.com" className="underline hover:text-ink font-bold transition-colors">Email us</a>.
+                            What we build, how we work, what we build it with, and what it costs. Can't find the answer? <a href="mailto:Qromatech@gmail.com" className="underline hover:text-ink font-bold transition-colors">Email us</a>.
                         </p>
                     </div>
 

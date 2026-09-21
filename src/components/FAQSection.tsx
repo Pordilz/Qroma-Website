@@ -5,29 +5,32 @@ import { Link } from 'react-router-dom';
 
 const faqs = [
     {
-        q: 'How much does web design cost in Durban?',
-        a: 'Qroma Digital\'s web design packages range from R3,500 to R18,000 depending on project scope. A starter business website starts from R3,500. Custom multi-page sites start from R7,500. eCommerce stores from R12,000.'
+        q: 'What kind of work does Qroma take on?',
+        a: 'We build software — web applications, platforms, native mobile apps, data pipelines and the infrastructure under them. We also design the brand and interface that goes on top. If it needs to be designed and engineered as one thing, that is our shape of work.'
     },
     {
-        q: 'Does Qroma Digital offer business automation in Durban?',
-        a: 'Yes. Qroma Digital is one of the only agencies in KZN offering full business automation including CRM setup, WhatsApp automation, Zapier integrations and workflow design for SMEs.'
-    },
-
-    {
-        q: 'What areas in KZN do you serve?',
-        a: 'We\'re headquartered in Durban and serve all of KZN including Umhlanga, Hillcrest, Westville, Pinetown, Ballito, Pietermaritzburg, and nationally across South Africa.'
+        q: 'Is Qroma an agency or a product studio?',
+        a: 'Both, deliberately. We build and run our own products — Halaq, The Ledger, VidMetrics — and we take on a small number of client builds each year. Running our own products is what keeps the client work sharp: we make the same decisions on our own time and money first.'
     },
     {
-        q: 'What services does Qroma provide?',
-        a: 'We specialize in custom web development, digital marketing strategies, and business automation software tailored for South African businesses.'
+        q: 'How do you price a project?',
+        a: 'We scope the work and quote it. There are three ways to engage: Build for a defined project with a fixed scope and timeline, Partner for an ongoing monthly retainer with reserved capacity, and Lab where we co-build a product with shared risk and upside. We stopped selling fixed packages because they priced pages instead of outcomes.'
     },
     {
-        q: 'How long does a website take to build?',
-        a: 'A standard business website takes 5–14 days. eCommerce stores typically take 14–30 days. Rush turnaround is available — contact us.'
+        q: 'How long does a build take?',
+        a: 'A focused marketing site is typically 2–4 weeks. A web application with real functionality runs 6–12 weeks. Products with integrations, payments or data pipelines take longer. We work in shipped increments, so there is something running and reviewable from week one.'
     },
     {
-        q: 'What is WhatsApp business automation?',
-        a: 'WhatsApp automation uses software to automatically reply to customer enquiries, send quotes, confirm appointments, and follow up with leads — without manual effort. Qroma Digital sets this up for Durban and South African businesses.'
+        q: 'Who owns the code you write?',
+        a: 'You do, on client builds — transferred on final payment, in a repository you control. We will not hold your codebase, domain or hosting hostage. Lab engagements are structured differently and agreed up front.'
+    },
+    {
+        q: 'Do you still build standard business websites?',
+        a: 'Yes. A well-built marketing site is still one of the highest-return things a business can own, and we build plenty of them. The difference is that we treat it as a product with a job to do rather than a number of pages on a price list.'
+    },
+    {
+        q: 'Where are you based and who do you work with?',
+        a: 'We are based in Durban, KwaZulu-Natal, and work with clients across South Africa and internationally. Software does not care where it is written — most of our work is remote by default.'
     }
 ];
 
@@ -59,7 +62,7 @@ export default function FAQSection() {
                         Frequently Asked Questions
                     </h2>
                     <p className="text-xl text-[var(--ink-black)]/60 font-clean mb-8">
-                        Everything you need to know about our services, process, and pricing.
+                        What we build, how we work, and what it costs to work with us.
                     </p>
                 </div>
 

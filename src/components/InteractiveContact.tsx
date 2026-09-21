@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Send, Check, Mail, Instagram, ArrowUpRight, ChevronDown, Globe, Megaphone, Zap, Palette, Wrench, Minimize2, Download } from 'lucide-react';
+import { Send, Check, Mail, Instagram, ArrowUpRight, ChevronDown, Globe, Megaphone, Zap, Palette, Wrench, Minimize2, FolderOpen } from 'lucide-react';
 import BlurText from './BlurText';
 
 export default function InteractiveContact() {
@@ -18,11 +18,11 @@ export default function InteractiveContact() {
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const serviceOptions = [
-        { value: 'web', label: 'Web Development', icon: Globe },
-        { value: 'marketing', label: 'Digital Marketing', icon: Megaphone },
-        { value: 'automation', label: 'Business Automation', icon: Zap },
-        { value: 'branding', label: 'Brand Identity', icon: Palette },
-        { value: 'other', label: 'Custom Solution', icon: Wrench },
+        { value: 'product', label: 'Web or Product Build', icon: Globe },
+        { value: 'design', label: 'Design & Brand Identity', icon: Palette },
+        { value: 'systems', label: 'Automation & Systems', icon: Zap },
+        { value: 'partner', label: 'Ongoing Partnership', icon: Megaphone },
+        { value: 'other', label: 'Something Else', icon: Wrench },
     ];
 
     // Close dropdown on outside click
@@ -133,7 +133,7 @@ export default function InteractiveContact() {
                         transition={{ duration: 0.6, delay: 0.3 }}
                         className="text-lg md:text-xl text-ink/50 max-w-xl mx-auto font-sketch"
                     >
-                        Don't be afraid to say hello!
+                        Tell us what you want to build. We reply to all of them.
                     </motion.p>
                 </div>
 
@@ -475,7 +475,10 @@ export default function InteractiveContact() {
                 <div className="flex flex-col items-center mb-16 max-w-2xl mx-auto text-center">
                     {/* Footer Info */}
                     <div className="flex flex-col justify-center w-full">
-                        <div className="text-4xl font-bold text-[var(--ink-black)] mb-6 tracking-tighter">QROMA DIGITAL</div>
+                        <div className="text-4xl font-bold text-[var(--ink-black)] mb-3 tracking-tighter">QROMA</div>
+                        <p className="text-sm text-[var(--ink-black)]/50 font-clean mb-6">
+                            A development &amp; creative studio in Durban, South Africa.
+                        </p>
 
 
                         <div className="flex flex-wrap justify-center gap-3 text-sm font-medium">
@@ -485,16 +488,13 @@ export default function InteractiveContact() {
                             <Link to="/terms" className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300">
                                 Terms of Service
                             </Link>
-                            <a
-                                href="/proposal.pdf"
-                                download="Qroma_Proposal.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <Link
+                                to="/work"
                                 className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300 flex items-center gap-2"
                             >
-                                <Download size={14} />
-                                Service Proposal
-                            </a>
+                                <FolderOpen size={14} />
+                                Our Work
+                            </Link>
                             <Link to="/faq" className="bg-[var(--ink-black)] text-[var(--bg-paper)] px-4 py-1.5 rounded-full border-2 border-[var(--ink-black)] hover:bg-transparent hover:text-[var(--ink-black)] transition-all duration-300">
                                 Help Center
                             </Link>
@@ -512,7 +512,7 @@ export default function InteractiveContact() {
                             </a>
                         </div>
 
-                        <div className="mt-8 text-[var(--ink-black)]/40 text-xs">© 2026 Qroma Digital. All rights reserved.</div>
+                        <div className="mt-8 text-[var(--ink-black)]/40 text-xs">© 2026 Qroma. Built in Durban, South Africa.</div>
                     </div>
                 </div>
             </div>

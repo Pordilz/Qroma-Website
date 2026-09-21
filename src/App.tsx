@@ -17,6 +17,8 @@ import FAQSection from './components/FAQSection';
 import ThemeToggle from './components/ThemeToggle';
 import Vault from './components/Vault';
 import BlogPost from './pages/BlogPost';
+import Work from './pages/Work';
+import ProjectDetail from './pages/ProjectDetail';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import FAQ from './components/FAQ';
@@ -32,7 +34,7 @@ function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
 
-  const words = ["AUTOMATE", "ACCELERATE", "DOMINATE", "INNOVATE", "CREATE"];
+  const words = ["DESIGN", "BUILD", "SHIP", "CREATE", "ITERATE"];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   // Scroll to top and close menu on route change, but respect hash
@@ -104,7 +106,6 @@ function App() {
     { label: 'Services', section: 'services' },
     { label: 'Process', section: 'process' },
     { label: 'Work', section: 'work' },
-    // { label: 'Pricing', section: 'pricing' },
     { label: 'About', section: null, route: '/about' },
     { label: 'Blog', section: null, route: '/blog' },
     { label: 'FAQ', section: 'faq' },
@@ -235,8 +236,8 @@ function App() {
               </div>
 
               <SEO
-                title="Qroma Digital | Expert Web Design & Automation in Durban"
-                description="Looking for expert Web Design in Durban? Qroma offers premium web development, digital marketing, and business automation in Kwa-Zulu Natal. Packages from R3500."
+                title="Qroma | Product & Software Studio in Durban, South Africa"
+                description="Qroma is a development and creative studio in Durban. We build our own products — Halaq, The Ledger, VidMetrics — and take on a small number of client builds each year."
                 canonical="https://www.qroma.digital/"
               />
 
@@ -248,7 +249,7 @@ function App() {
 
                 {/* ScrollVelocity Marquee between CaseStudies and Contact */}
                 <ScrollVelocity
-                  texts={['QROMA DIGITAL ✦ ', 'Design · Develop · Dominate · ']}
+                  texts={['QROMA STUDIO ✦ ', 'Design · Build · Ship · ']}
                   velocity={80}
                   scrollerClassNames={['velocity-scroller', 'velocity-scroller velocity-scroller-sketch']}
                 />
@@ -261,11 +262,23 @@ function App() {
             </>
           } />
 
+          <Route path="/work" element={
+            <>
+              <SEO
+                title="Work | Products, Client Builds & Experiments — Qroma"
+                description="The full Qroma archive: products we own, software we ship for clients, infrastructure, mobile apps and the smaller experiments from the lab."
+                canonical="https://www.qroma.digital/work"
+              />
+              <Work />
+            </>
+          } />
+          <Route path="/work/:slug" element={<ProjectDetail />} />
+
           <Route path="/blog" element={
             <>
               <SEO
-                title="The Vault | Qroma Digital Blog"
-                description="Insights on Web Design, Automation, and Digital Marketing from Qroma Digital in Durban."
+                title="The Vault | Notes from the Qroma Studio"
+                description="Notes on building software, design and automation from the Qroma studio in Durban."
                 canonical="https://www.qroma.digital/blog"
               />
               <Vault />
@@ -295,8 +308,8 @@ function App() {
           <Route path="/faq" element={
             <>
               <SEO
-                title="FAQ | Qroma Digital Web Design & Automation"
-                description="Frequently Asked Questions about our web design, development, and business automation services."
+                title="FAQ | Working With Qroma"
+                description="How Qroma works: engagement models, timelines, what we build, who owns the code, and what it costs."
                 canonical="https://www.qroma.digital/faq"
               />
               <FAQ />
@@ -305,8 +318,8 @@ function App() {
           <Route path="/about" element={
             <>
               <SEO
-                title="About Us | Qroma Digital"
-                description="Learn more about Qroma Digital. We build digital assets that help local and national businesses scale efficiently."
+                title="About | The Qroma Studio"
+                description="Qroma is a development and creative studio founded in Durban by Yahya Paruk and Ubaid Desai. We build our own products and take on a small number of client builds."
                 canonical="https://www.qroma.digital/about"
               />
               <About />
