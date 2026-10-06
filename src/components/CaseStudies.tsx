@@ -5,9 +5,9 @@ import {
   ExternalLink, ChevronDown, Star, MessageSquareQuote, FolderOpen,
   Github, FlaskConical, ArrowRight,
 } from 'lucide-react';
-import Folder from './Folder';
 import BlurText from './BlurText';
-import { featuredProjects, labItems, kindLabelsCompact, type Project } from '../data/projects';
+import FolderCarousel3D from './FolderCarousel3D';
+import { featuredProjects, labItems, kindLabelsCompact } from '../data/projects';
 
 const testimonials = [
   {
@@ -21,7 +21,7 @@ const testimonials = [
   },
 ];
 
-// The four builds that carry their own imagery get the folder treatment.
+// The four builds that carry their own imagery get the 3D rotating cylinder folder carousel treatment
 const folderProjects = featuredProjects.filter((p) => p.images && p.images.length > 0);
 const cardProjects = featuredProjects.filter((p) => !p.images || p.images.length === 0);
 
@@ -30,68 +30,11 @@ export default function CaseStudies() {
   const [showAll, setShowAll] = useState(false);
   const [panelTab, setPanelTab] = useState<'projects' | 'lab' | 'testimonials'>('projects');
 
-  // Papers inside a folder: each screenshot, then a tech-stack sheet, then a CTA sheet.
-  const buildFolderItems = (project: Project) => {
-    const papers: React.ReactNode[] = [];
-
-    (project.images ?? []).slice(0, 3).forEach((image) => {
-      papers.push(
-        <div
-          key={image.src}
-          className="w-full h-full bg-white border-2 border-[var(--ink-black)] overflow-hidden relative cursor-pointer"
-          onClick={(e) => {
-            e.stopPropagation();
-            setSelectedImage(image.src);
-          }}
-        >
-          <img
-            src={image.src}
-            alt={image.alt}
-            className="w-full h-full object-cover object-top"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-white opacity-0 hover:opacity-100 transition-opacity">
-            <span className="text-[10px] font-bold uppercase tracking-wider">{image.label}</span>
-          </div>
-        </div>,
-      );
-    });
-
-    if (papers.length < 3) {
-      papers.push(
-        <div
-          key="stack"
-          className="w-full h-full bg-[var(--card-bg)] flex flex-col items-center justify-center p-2 border-2 border-[var(--ink-black)]"
-        >
-          <div className="text-center leading-tight">
-            {project.tech.slice(0, 4).map((tech) => (
-              <div key={tech} className="text-[8px] font-bold text-ink/80 font-clean">{tech}</div>
-            ))}
-          </div>
-        </div>,
-      );
-    }
-
-    if (papers.length < 3) {
-      papers.push(
-        <div
-          key="cta"
-          className="w-full h-full bg-[var(--card-bg)] flex flex-col items-center justify-center p-2 border-2 border-[var(--ink-black)]"
-        >
-          <project.icon size={20} color={project.color} strokeWidth={2} />
-          <span className="text-[8px] font-bold text-ink mt-1 font-clean">{project.status}</span>
-        </div>,
-      );
-    }
-
-    return papers;
-  };
-
   return (
-    <section id="work" className="relative min-h-screen py-32 px-6 bg-paper">
+    <section id="work" className="relative min-h-screen py-32 px-4 md:px-6 bg-paper overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <BlurText
             text="Selected Work"
             className="text-5xl md:text-6xl font-bold font-clean tracking-tighter text-ink mb-6"
@@ -104,79 +47,16 @@ export default function CaseStudies() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-xl text-ink/70 max-w-2xl mx-auto font-sketch"
           >
-            Products we own, work we ship for clients, and infrastructure nobody sees. Click the folders to open them.
+            Products we own, work we ship for clients, and infrastructure nobody sees. Drag the carousel and click the folders to open them.
           </motion.p>
         </div>
 
-        {/* Folder Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-20">
-          {folderProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="flex flex-col items-center"
-            >
-              <Folder
-                color={project.color}
-                size={2.5}
-                items={buildFolderItems(project)}
-                className="mb-8"
-              />
-
-              <div className="text-center max-w-md">
-                <div className="text-xs font-bold text-ink/50 mb-2 uppercase tracking-wider font-sketch">
-                  {project.category}
-                </div>
-                <h3 className="text-2xl font-bold text-ink mb-3 font-clean tracking-tighter">
-                  {project.title}
-                </h3>
-                <p className="text-ink/70 mb-6 leading-relaxed text-sm">
-                  {project.description}
-                </p>
-
-                {/* Tech Stack Pills */}
-                <div className="flex flex-wrap gap-2 justify-center mb-6">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-3 py-1 text-xs font-bold font-clean border-2 border-[var(--ink-black)] rounded-full hover:bg-[var(--ink-black)] hover:text-[var(--bg-paper)] transition-all duration-300 cursor-default"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex flex-wrap items-center justify-center gap-3">
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Link
-                      to={`/work/${project.slug}`}
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--ink-black)] text-[var(--bg-paper)] font-bold font-clean tracking-tighter rounded-full hover:bg-transparent hover:text-[var(--ink-black)] border-2 border-[var(--ink-black)] transition-all duration-300"
-                    >
-                      Read the Build <ArrowRight size={16} />
-                    </Link>
-                  </motion.div>
-                  {project.url && (
-                    <motion.a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="inline-flex items-center gap-2 px-6 py-3 font-bold font-clean tracking-tighter rounded-full border-2 border-[var(--ink-black)]/20 text-ink hover:border-[var(--ink-black)] transition-all duration-300"
-                    >
-                      Visit Live <ExternalLink size={16} />
-                    </motion.a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+        {/* 3D Cylindrical Folder Carousel */}
+        <div className="mb-24">
+          <FolderCarousel3D projects={folderProjects} />
         </div>
 
-        {/* Secondary builds — no screenshots, so they get window cards instead of folders */}
+        {/* Secondary builds — window cards for infrastructure, internal & data builds */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {cardProjects.map((project, index) => (
             <motion.div
@@ -248,7 +128,7 @@ export default function CaseStudies() {
             onClick={() => setShowAll(!showAll)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--ink-black)] text-[var(--bg-paper)] font-bold font-clean tracking-tighter rounded-full hover:bg-transparent hover:text-[var(--ink-black)] border-2 border-[var(--ink-black)] transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--ink-black)] text-[var(--bg-paper)] font-bold font-clean tracking-tighter rounded-full hover:bg-transparent hover:text-[var(--ink-black)] border-2 border-[var(--ink-black)] transition-all duration-300 cursor-pointer"
           >
             {showAll ? 'Collapse' : 'View All'}
             <motion.span
@@ -296,7 +176,7 @@ export default function CaseStudies() {
                       <button
                         key={id}
                         onClick={() => setPanelTab(id)}
-                        className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold font-clean tracking-wider uppercase transition-all duration-200 ${panelTab === id
+                        className={`flex-1 md:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold font-clean tracking-wider uppercase transition-all duration-200 cursor-pointer ${panelTab === id
                           ? 'bg-[var(--ink-black)] text-[var(--bg-paper)] shadow-sm'
                           : 'text-ink/40 hover:text-ink/60'
                           }`}
@@ -427,8 +307,7 @@ export default function CaseStudies() {
                         transition={{ duration: 0.3 }}
                       >
                         <p className="text-sm text-ink/50 font-clean leading-relaxed mb-6 max-w-2xl">
-                          Smaller builds — games, solvers and tools. Some solve a problem, some exist because the
-                          problem looked fun. Nothing here is a product; everything here taught us something we now use.
+                          Smaller builds — games, solvers and tools. Some solve a problem, some exist because the problem looked fun. Nothing here is a product; everything here taught us something we now use.
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                           {labItems.map((item, index) => {
@@ -579,6 +458,7 @@ export default function CaseStudies() {
         </AnimatePresence>
       </div>
 
+      {/* Lightbox for secondary card images */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div

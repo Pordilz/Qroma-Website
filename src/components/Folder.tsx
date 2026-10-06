@@ -42,7 +42,7 @@ const Folder = ({ color = '#121212', size = 1, items = [], className = '' }: Fol
 
     const handlePaperMouseMove = (e: React.MouseEvent, index: number) => {
         if (!open) return;
-        const rect = e.currentTarget.getBoundingClientRect();
+        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
         const offsetX = (e.clientX - centerX) * 0.15;
