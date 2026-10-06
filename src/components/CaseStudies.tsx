@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import BlurText from './BlurText';
 import FolderCarousel3D from './FolderCarousel3D';
+import SvgProjectCard from './SvgProjectCard';
 import { featuredProjects, labItems, kindLabelsCompact } from '../data/projects';
 
 const testimonials = [
@@ -56,7 +57,7 @@ export default function CaseStudies() {
           <FolderCarousel3D projects={folderProjects} />
         </div>
 
-        {/* Secondary builds — window cards for infrastructure, internal & data builds */}
+        {/* Secondary builds — High Quality SVG dossier cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {cardProjects.map((project, index) => (
             <motion.div
@@ -65,53 +66,13 @@ export default function CaseStudies() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08, duration: 0.4 }}
+              className="flex"
             >
-              <Link
-                to={`/work/${project.slug}`}
-                className="group flex flex-col h-full rounded-2xl border-2 border-[var(--ink-black)] bg-[var(--card-bg)] overflow-hidden hover:shadow-[8px_8px_0px_0px_var(--shadow-color)] hover:-translate-y-1 transition-all duration-300"
-              >
-                {/* Mac Title Bar */}
-                <div className="flex items-center justify-between px-5 py-3 bg-[var(--card-bg)] border-b-2 border-[var(--ink-black)]/10">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-[#ff5f57] border border-[#e0443e]" />
-                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
-                    <div className="w-3 h-3 rounded-full bg-[#28c840] border border-[#1aab29]" />
-                  </div>
-                  <span className="text-xs font-bold tracking-wider uppercase text-[var(--ink-black)]/50 font-clean">
-                    {kindLabelsCompact[project.kind]}
-                  </span>
-                  <div className="w-16" />
-                </div>
-
-                <div className="p-6 flex flex-col flex-1">
-                  <div
-                    className="w-12 h-12 mb-5 rounded-xl border-2 flex items-center justify-center"
-                    style={{ borderColor: project.color + '40', background: project.color + '12' }}
-                  >
-                    <project.icon size={22} style={{ color: project.color }} />
-                  </div>
-                  <h3 className="text-lg font-bold text-ink font-clean tracking-tighter mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-ink/60 font-clean leading-relaxed mb-5 flex-1">
-                    {project.tagline}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {project.tech.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-0.5 text-[10px] font-bold font-clean border-2 border-[var(--ink-black)]/15 rounded-full text-ink/60"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <span className="inline-flex items-center gap-2 text-sm font-bold font-clean text-ink">
-                    Read the Build
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </div>
-              </Link>
+              <SvgProjectCard
+                project={project}
+                index={index + 4}
+                onSelectImage={(src) => setSelectedImage(src)}
+              />
             </motion.div>
           ))}
         </div>
