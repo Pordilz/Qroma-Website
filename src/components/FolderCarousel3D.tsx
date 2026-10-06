@@ -193,10 +193,12 @@ const CylinderCard = memo(function CylinderCard({
 
     return (
         <div
-            className="absolute top-0 flex flex-col items-center select-none"
+            className="absolute flex flex-col items-center select-none"
             style={{
                 width: `${cardWidth}px`,
-                transform: `rotateY(${cardAngle}deg) translateZ(${radius}px)`,
+                top: '50%',
+                left: '50%',
+                transform: `translate(-50%, -50%) rotateY(${cardAngle}deg) translateZ(${radius}px)`,
                 transformStyle: 'preserve-3d',
                 backfaceVisibility: 'hidden',
                 WebkitBackfaceVisibility: 'hidden',
@@ -218,14 +220,14 @@ const CylinderCard = memo(function CylinderCard({
             >
                 {/* ─── Solid Opaque Dossier Card ─── */}
                 <div
-                    className={`w-full rounded-2xl border-2 border-[var(--ink-black)] bg-[#fdfbf7] dark:bg-[#202020] transition-all duration-300 flex flex-col overflow-hidden ${
+                    className={`w-full rounded-2xl border-2 border-[var(--ink-black)] bg-[var(--card-bg)] transition-all duration-300 flex flex-col ${
                         isFront
                             ? 'shadow-[10px_10px_0px_0px_var(--shadow-color)] ring-2 ring-[var(--ink-black)]/10'
                             : 'shadow-[4px_4px_0px_0px_var(--shadow-color)] hover:shadow-[6px_6px_0px_0px_var(--shadow-color)] cursor-pointer'
                     }`}
                 >
                     {/* Window Header */}
-                    <div className="flex items-center justify-between px-3.5 py-2 bg-[#f4f0e6] dark:bg-[#282828] border-b-2 border-[var(--ink-black)]/15">
+                    <div className="flex items-center justify-between px-3.5 py-2 bg-[var(--card-bg)] border-b-2 border-[var(--ink-black)]/15 rounded-t-2xl">
                         <div className="flex items-center gap-1.5">
                             <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57] border border-[#e0443e]" />
                             <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e] border border-[#dea123]" />
@@ -248,10 +250,10 @@ const CylinderCard = memo(function CylinderCard({
                     </div>
 
                     {/* Folder Showcase Stage */}
-                    <div className="py-4 px-3 flex flex-col items-center justify-center bg-[#f8f5ee] dark:bg-[#232323] border-b-2 border-[var(--ink-black)]/10 relative">
+                    <div className="py-3 px-3 flex flex-col items-center justify-center bg-[var(--bg-paper)] border-b-2 border-[var(--ink-black)]/10 relative">
                         <Folder
                             color={project.color}
-                            size={1.3}
+                            size={1.15}
                             items={buildFolderItems()}
                             className="relative z-10"
                         />
@@ -263,7 +265,7 @@ const CylinderCard = memo(function CylinderCard({
                     </div>
 
                     {/* Card Content & Action Strip */}
-                    <div className="p-4 flex flex-col justify-between text-center bg-[#fdfbf7] dark:bg-[#202020] flex-1">
+                    <div className="p-4 flex flex-col justify-between text-center bg-[var(--card-bg)] flex-1 rounded-b-2xl">
                         <div>
                             <div className="text-[9.5px] font-bold text-ink/40 mb-0.5 uppercase tracking-widest font-sketch">
                                 {project.category}
@@ -477,7 +479,7 @@ export default function FolderCarousel3D({ projects }: FolderCarousel3DProps) {
             {/* ─── 3D Viewport Stage ─── */}
             <div
                 ref={carouselContainerRef}
-                className="relative h-[620px] md:h-[660px] w-full overflow-hidden flex items-center justify-center cursor-grab active:cursor-grabbing"
+                className="relative h-[700px] md:h-[750px] w-full overflow-visible flex items-center justify-center cursor-grab active:cursor-grabbing"
                 style={{
                     perspective: isScreenSm ? '1500px' : '2000px',
                     perspectiveOrigin: '50% 50%',

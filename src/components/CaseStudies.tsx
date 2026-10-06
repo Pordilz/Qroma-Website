@@ -31,7 +31,7 @@ export default function CaseStudies() {
   const [panelTab, setPanelTab] = useState<'projects' | 'lab' | 'testimonials'>('projects');
 
   return (
-    <section id="work" className="relative min-h-screen py-32 px-4 md:px-6 bg-paper overflow-hidden">
+    <section id="work" className="relative min-h-screen py-32 px-4 md:px-6 bg-paper overflow-x-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
