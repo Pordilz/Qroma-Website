@@ -77,14 +77,6 @@ const CylinderCard = memo(function CylinderCard({
         return 1 - (dist / 90) * 0.14;
     });
 
-    // Depth-of-field soft blur for cards further away
-    const filter = useTransform(rotation, (r: number) => {
-        const net = ((cardAngle + r) % 360 + 360) % 360;
-        const dist = net > 180 ? 360 - net : net;
-        if (dist <= 22) return 'blur(0px)';
-        const blurAmount = Math.min(2.5, ((dist - 22) / 60) * 2.2);
-        return `blur(${blurAmount.toFixed(1)}px)`;
-    });
 
     // Disable pointer interaction on cards not in front
     const pointerEvents = useTransform(rotation, (r: number) => {
@@ -208,7 +200,6 @@ const CylinderCard = memo(function CylinderCard({
                 style={{
                     opacity,
                     scale,
-                    filter,
                     pointerEvents,
                 }}
                 className="w-full transition-shadow duration-300"
@@ -493,11 +484,7 @@ export default function FolderCarousel3D({ projects }: FolderCarousel3DProps) {
                     }}
                 />
 
-                {/* Left atmosphere edge fade */}
-                <div className="pointer-events-none absolute inset-y-0 left-0 w-16 md:w-28 bg-gradient-to-r from-[var(--bg-paper)] to-transparent z-10" />
 
-                {/* Right atmosphere edge fade */}
-                <div className="pointer-events-none absolute inset-y-0 right-0 w-16 md:w-28 bg-gradient-to-l from-[var(--bg-paper)] to-transparent z-10" />
 
                 {/* 3D Cylinder Rotor with Smooth Zoom Scaling */}
                 <motion.div
