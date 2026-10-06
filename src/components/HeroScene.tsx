@@ -4,10 +4,10 @@ import { Suspense, useEffect, useState } from 'react';
 import Planet from './Planet';
 
 interface HeroSceneProps {
-    scrollProgress: number;
+    scrollProgress?: number;
 }
 
-export default function HeroScene({ scrollProgress }: HeroSceneProps) {
+export default function HeroScene({ scrollProgress: _scrollProgress }: HeroSceneProps) {
     const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' ? window.innerWidth < 768 : false);
 
     useEffect(() => {

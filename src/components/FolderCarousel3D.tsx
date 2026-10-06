@@ -1,5 +1,5 @@
 import React, { memo, useState, useRef, useEffect, useLayoutEffect, useCallback } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform, animate, type PanInfo } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
     ChevronLeft,
@@ -256,7 +256,7 @@ export default function FolderCarousel3D({ projects }: FolderCarousel3DProps) {
     const radius = Math.round(cylinderWidth / (2 * Math.PI));
 
     const rotation = useMotionValue(0);
-    const transform = useTransform(rotation, (val) => `rotate3d(0, 1, 0, ${val}deg)`);
+    const transform = useTransform(rotation, (val: number) => `rotate3d(0, 1, 0, ${val}deg)`);
 
     const [activeIndex, setActiveIndex] = useState(0);
     const [selectedLightbox, setSelectedLightbox] = useState<{ src: string; alt: string } | null>(null);
@@ -277,7 +277,7 @@ export default function FolderCarousel3D({ projects }: FolderCarousel3DProps) {
 
     // Keep activeIndex synchronized as rotation changes
     useEffect(() => {
-        const unsubscribe = rotation.on('change', (val) => {
+        const unsubscribe = rotation.on('change', (val: number) => {
             updateActiveIndex(val);
         });
         return () => unsubscribe();
@@ -349,12 +349,12 @@ export default function FolderCarousel3D({ projects }: FolderCarousel3DProps) {
                         setIsDragging(true);
                         dragStartRotation.current = rotation.get();
                     }}
-                    onDrag={(_, info) => {
+                    onDrag={(_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
                         // Proportional rotation: moving across the cylinder spins it naturally
                         const deltaAngle = (info.offset.x / cylinderWidth) * 360 * 1.4;
                         rotation.set(dragStartRotation.current + deltaAngle);
                     }}
-                    onDragEnd={(_, info) => {
+                    onDragEnd={(_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
                         setIsDragging(false);
                         const current = rotation.get();
                         // Add inertia from flick velocity

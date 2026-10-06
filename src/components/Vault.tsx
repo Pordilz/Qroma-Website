@@ -193,7 +193,7 @@ export default function Vault() {
                                         exit={{ opacity: 0 }}
                                         className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4"
                                     >
-                                        {filteredPosts.map((post, index) => {
+                                        {filteredPosts.map((post) => {
                                             const Icon = post.icon;
                                             return (
                                                 <Link
@@ -269,7 +269,7 @@ export default function Vault() {
                                             <span>Size</span>
                                             <span>Kind</span>
                                         </div>
-                                        {filteredPosts.map((post, index) => {
+                                        {filteredPosts.map((post) => {
                                             const Icon = post.icon;
                                             return (
                                                 <Link

@@ -10,7 +10,7 @@ interface Laptop3DProps {
 
 export default function Laptop3D({ scrollProgress, onFullyOpen }: Laptop3DProps) {
   const laptopRef = useRef<THREE.Group>(null);
-  const lidRef = useRef<THREE.Mesh>(null);
+  const lidRef = useRef<THREE.Group>(null);
 
   const openProgress = Math.min(scrollProgress * 2.5, 1);
   const lidAngle = openProgress * (Math.PI * 0.55);
