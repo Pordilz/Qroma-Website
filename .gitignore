@@ -21,3 +21,13 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# local agent tooling and build artifacts - not application source
+.claude/
+.agents/
+.codex/
+.opencode/
+.remember/
+.playwright-mcp/
+artifacts/
+*.tsbuildinfo
